@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="ROIClientApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.min.css">
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
+<body>
+//nav bar
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn navbar-btn btn-primary">Help</button></li>
+                <li><button type="button" class="btn navbar-btn btn-success">Login</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+//side menu + content
+<div class="container-fluid" style="margin-top: 50px">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" style="position: fixed">
+            <ul class="nav nav-sidebar">
+                <li><a href="#planforward">Plan Forward</a></li>
+                <li><a href="#lookback">Look Back</a></li>
+                <li><a href="#mysenarios">My Scenarios</a></li>
+                <li><a href="#compare">Compare</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>
