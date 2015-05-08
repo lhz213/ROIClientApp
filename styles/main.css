@@ -1,0 +1,145 @@
+/*************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************/
+body {
+    background-color: #f8f8f8;
+}
+a{
+    color:#3c3c3c;
+}
+a:hover{
+    color: rgb(240, 83, 35);
+}
+/*      -----------------nav element setting ------------------*/
+.breadcrumb {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #727272;
+}
+
+.logo_ROI {
+    margin: 20px 20px 20px 20px;
+    font-size: 24px;
+    float: left;
+    color: #727272;
+}
+
+/*      --------------end--- -nav element setting ------------------*/
+.empty-container-left {
+    height: 40px;
+}
+
+/*      -----------------btn ------------------*/
+.height_bar {
+    height: 83px;
+}
+
+.logo_s {
+    width: 140px;
+    height: 48px;
+    margin: 0px;
+}
+
+.content {
+    margin-bottom: 20px;
+}
+
+/*      -----------------page-header ------------------*/
+#page-header-margin-top {
+    margin-top: 70px;
+}
+
+.sidebar {
+    padding-top: 50px;
+    position: fixed;
+    height: 100%;
+    font-size:16px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+}
+
+#page-header-title {
+    margin: 20px 20px 20px 20px;
+}
+
+#page-show-border {
+    border: 1px solid #727272;
+}
+
+.log-info-text-setting {
+    padding-right: 40px;
+}
+
+/*      ------------end-----page-header ------------------*/
+
+/*      -----------------font style ------------------*/
+.font-turn-red {
+    color: rgb(240, 83, 35);
+}
+
+/*      -----------end------font style ------------------*/
+/*      -----------------btn ------------------*/
+.btn-orange {
+    background-color: rgb(240, 83, 35);
+    color:#f8f8f8;
+}
+
+.btn-orange:hover {
+    background-color: #f8f8f8;
+    color:rgb(240, 83, 35);
+    border: 1px solid rgb(240, 83, 35);
+}
+
+
+.btn-nav-roi {
+    margin: 10px 6px 10px 6px;
+    padding: 6px 30px 6px 30px;
+}
+
+/*      ---------end--------btn ------------------*/
+/*      -----------------conponent  setting------------------*/
+.dashboard-p {
+    padding: 0 0 0 0;
+}
+
+.leadhome {
+    width: 600px;
+}
+
+.content {
+    margin-top: 40px;
+}
+.sidebar-a{}
+.sidebar-a:hover{
+    border-left: 3px solid rgb(240, 83, 35);
+    padding-left: 13px;
+
+}
+.video-title {
+    margin-top: 0px;
+}
+.video-info-setting{
+    width: 90%;
+
+}
+.video{
+    height: 300px;
+    margin-top:0px;
+}
+
+.dashboard-img{ width:116px; height:116px;}
+/*      -----------------conponent  setting------------------*/

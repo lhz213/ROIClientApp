@@ -6,6 +6,10 @@
 var app = angular.module('ROIClientApp', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
+            .when('/dashboard', {
+                templateUrl: './views/dashboard.html',
+                controller:'dashboardCtrl'
+            })
             .when('/planforward', {
                 templateUrl: './views/planforward.html',
                 controller: 'forwardCtrl'
