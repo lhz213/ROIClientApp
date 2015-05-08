@@ -18,7 +18,12 @@
 body {
     background-color: #f8f8f8;
 }
-
+a{
+    color:#3c3c3c;
+}
+a:hover{
+    color: rgb(240, 83, 35);
+}
 /*      -----------------nav element setting ------------------*/
 .breadcrumb {
     margin-top: 10px;
@@ -59,9 +64,10 @@ body {
 }
 
 .sidebar {
-    width: 220px;
+    padding-top: 50px;
+    position: fixed;
     height: 100%;
-
+    font-size:16px;
     background-color: rgb(241, 241, 241);
     border-radius: 10px;
 }
@@ -87,13 +93,17 @@ body {
 
 /*      -----------end------font style ------------------*/
 /*      -----------------btn ------------------*/
-.btn-danger {
+.btn-orange {
     background-color: rgb(240, 83, 35);
+    color:#f8f8f8;
 }
 
-.btn-danger:hover {
-    background-color: rgb(246, 44, 0);
+.btn-orange:hover {
+    background-color: #f8f8f8;
+    color:rgb(240, 83, 35);
+    border: 1px solid rgb(240, 83, 35);
 }
+
 
 .btn-nav-roi {
     margin: 10px 6px 10px 6px;
@@ -113,9 +123,23 @@ body {
 .content {
     margin-top: 40px;
 }
+.sidebar-a{}
+.sidebar-a:hover{
+    border-left: 3px solid rgb(240, 83, 35);
+    padding-left: 13px;
 
-.howit {
+}
+.video-title {
     margin-top: 0px;
 }
+.video-info-setting{
+    width: 90%;
 
+}
+.video{
+    height: 300px;
+    margin-top:0px;
+}
+
+.dashboard-img{ width:116px; height:116px;}
 /*      -----------------conponent  setting------------------*/
