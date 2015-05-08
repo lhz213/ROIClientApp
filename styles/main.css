@@ -1,0 +1,121 @@
+/*************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************
+ *******                            **************
+ *************************************************
+ *************************************************/
+body {
+    background-color: #f8f8f8;
+}
+
+/*      -----------------nav element setting ------------------*/
+.breadcrumb {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #727272;
+}
+
+.logo_ROI {
+    margin: 20px 20px 20px 20px;
+    font-size: 24px;
+    float: left;
+    color: #727272;
+}
+
+/*      --------------end--- -nav element setting ------------------*/
+.empty-container-left {
+    height: 40px;
+}
+
+/*      -----------------btn ------------------*/
+.height_bar {
+    height: 83px;
+}
+
+.logo_s {
+    width: 140px;
+    height: 48px;
+    margin: 0px;
+}
+
+.content {
+    margin-bottom: 20px;
+}
+
+/*      -----------------page-header ------------------*/
+#page-header-margin-top {
+    margin-top: 70px;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100%;
+
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+}
+
+#page-header-title {
+    margin: 20px 20px 20px 20px;
+}
+
+#page-show-border {
+    border: 1px solid #727272;
+}
+
+.log-info-text-setting {
+    padding-right: 40px;
+}
+
+/*      ------------end-----page-header ------------------*/
+
+/*      -----------------font style ------------------*/
+.font-turn-red {
+    color: rgb(240, 83, 35);
+}
+
+/*      -----------end------font style ------------------*/
+/*      -----------------btn ------------------*/
+.btn-danger {
+    background-color: rgb(240, 83, 35);
+}
+
+.btn-danger:hover {
+    background-color: rgb(246, 44, 0);
+}
+
+.btn-nav-roi {
+    margin: 10px 6px 10px 6px;
+    padding: 6px 30px 6px 30px;
+}
+
+/*      ---------end--------btn ------------------*/
+/*      -----------------conponent  setting------------------*/
+.dashboard-p {
+    padding: 0 0 0 0;
+}
+
+.leadhome {
+    width: 600px;
+}
+
+.content {
+    margin-top: 40px;
+}
+
+.howit {
+    margin-top: 0px;
+}
+
+/*      -----------------conponent  setting------------------*/
