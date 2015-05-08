@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var app=angular.module('ROIClientApp', ['ngRoute'])
+var app = angular.module('ROIClientApp', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/dashboard', {
@@ -12,25 +12,45 @@ var app=angular.module('ROIClientApp', ['ngRoute'])
             })
             .when('/planforward', {
                 templateUrl: './views/planforward.html',
-                controller:'forwardCtrl'
+                controller: 'forwardCtrl'
             })
             .when('/lookback', {
                 templateUrl: './views/lookback.html',
-                controller:'backCtrl'
+                controller: 'backCtrl'
             })
             .when('/mysenarios', {
                 templateUrl: './views/mysenarios.html',
-                controller:'scenariosCtrl'
+                controller: 'scenariosCtrl'
             })
             .when('/compare', {
                 templateUrl: './views/compare.html',
-                controller:'compareCtrl'
+                controller: 'compareCtrl'
             })
             .otherwise({
                 templateUrl: './views/dashboard.html',
-                controller:''
+                controller: ''
             })
     });
 
-var compareCtrl = function(){};
-
+app.controller("scenariosCtrl", function ($scope) {
+        $scope.path=
+            [{title:"Scenarios",link:function(){}},
+             {title:"Save",link:function(){}}
+            ];
+        $scope.scenarios = [];
+        $scope.scenarios.push({
+            id: "id",
+            name: "name",
+            note: "note",
+            createDate: "createDate",
+            beginMonth: "beginMonth",
+            endMonth: "endMonth",
+            brand: "brand",
+            plannedSpend: "plannedSpend",
+            AM: "AM",
+            historyIncluded: "historyIncluded",
+            DataThrough: "DataThrough",
+            shared: "shared"
+        })
+    }
+);
