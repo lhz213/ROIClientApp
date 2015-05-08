@@ -1,6 +1,66 @@
-<div>
-    <ol class="breadcrumb">
-        <li><a href="">Dash Board</a></li>
-        <li>My Scenarios</li>
-    </ol>
+<div class="container-fluid">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="">Dash Board</a></li>
+            <li ng-repeat="tag in path"><a  href="">{{tag.title}}</a></li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Owner</th>
+                    <th>Final?</th>
+                    <th rowspan="2">Create Date</th>
+                    <th rowspan="2">Begin Month</th>
+                    <th rowspan="2">End Month</th>
+                    <th rowspan="2">Brand</th>
+                    <th rowspan="2">Planned Spend</th>
+                    <th rowspan="2">AM</th>
+                    <th rowspan="2">History Included?</th>
+                    <th rowspan="2">Data Through</th>
+                    <th rowspan="2">Shared?</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <p></p>
+                <tr ng-click="" ng-repeat="scenario in scenarios">
+                    <th>{{scenario.id}}</th>
+                    <th>{{scenario.name}}</th>
+                    <th>{{scenario.note}}</th>
+                    <th>{{scenario.createDate}}</th>
+                    <th>{{scenario.beginMonth}}</th>
+                    <th>{{scenario.endMonth}}</th>
+                    <th>{{scenario.brand}}</th>
+                    <th>{{scenario.plannedSpend}}</th>
+                    <th>{{scenario.AM}}</th>
+                    <th>{{scenario.historyIncluded}}</th>
+                    <th>{{scenario.DataThrough}}</th>
+                    <th>{{scenario.shared}}</th>
+                </tr>
+                <tr>
+                    <th>scenario.id</th>
+                    <th>scenario.name</th>
+                    <th>scenario.note</th>
+                    <th>scenario.createDate</th>
+                    <th>scenario.beginMonth</th>
+                    <th>scenario.endMonth</th>
+                    <th>scenario.brand</th>
+                    <th>scenario.plannedSpend</th>
+                    <th>scenario.AM</th>
+                    <th>scenario.historyIncluded</th>
+                    <th>scenario.DataThrough</th>
+                    <th>scenario.shared</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
