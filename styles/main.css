@@ -142,11 +142,16 @@ a:hover {
 }
 
 .sidebar-a {
+    text-transform: capitalize;
 }
 
 .sidebar-a:hover {
     border-left: 3px solid rgb(240, 83, 35);
     padding-left: 12px;
+    -webkit-transform: translateX(7px);
+    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+    -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
 }
 
 .sidebar-a:active {
