@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ROI Decision Support Tool</title>
     <!--Local css Components-->
+    <link rel="shortcut icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/main.css">
@@ -26,7 +27,8 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/dashboard"><img src="img/sfly_logo.png" class="logo_s"></a>
+            <a class="navbar-brand " href="#/dashboard"><img src="img/sfly_logo.png" class="logo_s"></a>
+
             <span class="logo_ROI">ROI Decision Support Tool </span>
 
         </div>
@@ -52,13 +54,16 @@
 
     <div class="row">
 
-        <div class="col-sm-3 col-md-2 sidebar ">
+        <div class="col-sm-3 col-md-2  sidebar">
+
+
             <ul class="nav nav-sidebar">
                 <li><a class="sidebar-a" href="#planforward">Plan Forward</a></li>
                 <li><a class="sidebar-a" href="#lookback">Look Back</a></li>
                 <li><a class="sidebar-a" href="#mysenarios">My Scenarios</a></li>
                 <li><a class="sidebar-a" href="#compare">Compare</a></li>
             </ul>
+
         </div>
         <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">
             <div ng-view></div>
