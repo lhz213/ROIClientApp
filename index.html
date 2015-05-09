@@ -13,7 +13,7 @@
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
 </head>
-<body>
+<body ng-controller="indexCtrl">
 <!--nav bar-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -41,7 +41,7 @@
                 </li>
                 <br/>
                 <li>
-                    <div class="log-info-text-setting"><i class="font-turn-red">Welcome, Ed </i> | <small>Last Logged on Feb15, 2015</small></div>
+                    <div class="log-info-text-setting"><i class="font-turn-red">Welcome, {{users[0].name}} </i> | <small>{{users[0].recentlyLoginRecord}}</small></div>
                 </li>
             </ul>
         </div>

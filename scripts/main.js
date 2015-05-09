@@ -27,6 +27,22 @@ var app = angular.module('ROIClientApp', ['ngRoute'])
                 controller: ''
             })
     });
+app.controller("indexCtrl",function($scope){
+    $scope.users=[];
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var recentDate=" "+ today.toDateString().split(" ").splice(0,3).join("-");
+    //var recentDate = " "+today.getMonth()+"/"+today.getDate();
+
+    $scope.users.push({
+        name:"Ed",
+        recentlyLoginRecord : "Last Logged on"+recentDate
+    });
+
+
+
+});
 
 app.controller("scenariosCtrl", function ($scope) {
         $scope.path=
