@@ -117,12 +117,14 @@ a:hover {
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
+    font-weight: 700;
 }
 
 .btn-orange:active {
     box-shadow: 2px 2px 2px rgb(240, 83, 35);
     position: relative;
     top: 2px;
+    font-weight: 700;
 }
 
 .btn-nav-roi {
@@ -132,6 +134,7 @@ a:hover {
     color: #727272;
 }
 .btn-nav-roi:hover{
+    font-weight: 700;
     background-color: #f8f8f8;
     position: relative;
     top: 1px;
@@ -140,8 +143,12 @@ a:hover {
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
+    color: rgb(240, 83, 35);
+    content: attr(data-hover);
+
 }
 .btn-nav-roi:active{
+    font-weight: 700;
     position: relative;
     top: 2px;
 }
@@ -157,21 +164,24 @@ a:hover {
 
 .sidebar-a {
     text-transform: capitalize;
+    
 }
 
 .sidebar-a:hover {
     border-left: 3px solid rgb(240, 83, 35);
     padding-left: 12px;
-    -webkit-transform: translateX(7px);
+    -webkit-transform: translateX(6px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
+    font-weight: 700;
 }
 
 .sidebar-a:active {
     color: rgb(240, 83, 35);
     position: relative;
     top: 2px;
+    font-weight: 700;
 }
 
 .video-title {
