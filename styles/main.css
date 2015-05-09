@@ -107,6 +107,10 @@ a:hover {
     position: relative;
     top: 1px;
     left: 1px;
+    -webkit-transform: translateY(2px);
+    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+    -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
 }
 
 .btn-orange:active {
