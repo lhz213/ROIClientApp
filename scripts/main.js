@@ -3,27 +3,27 @@
  */
 'use strict';
 
-angular.module('ROIClientApp', ['ngRoute'])
+angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientAppLookBackModule', 'ngSanitize'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/planforward', {
                 templateUrl: './views/planforward.html',
-                controller:'forwardCtrl'
+                controller: 'forwardCtrl'
             })
             .when('/lookback', {
                 templateUrl: './views/lookback.html',
-                controller:'backCtrl'
+                controller: 'backCtrl'
             })
             .when('/mysenarios', {
                 templateUrl: './views/mysenarios.html',
-                controller:'scenariosCtrl'
+                controller: 'scenariosCtrl'
             })
             .when('/compare', {
                 templateUrl: './views/compare.html',
-                controller:'compareCtrl'
+                controller: 'compareCtrl'
             })
             .otherwise({
                 templateUrl: './views/dashboard.html',
-                controller:''
+                controller: ''
             })
     });
