@@ -28,6 +28,8 @@ var app = angular.module('ROIClientApp', ['ngRoute'])
             })
     });
 app.controller("indexCtrl",function($scope){
+    $scope.clickValue= true;
+
     $scope.users=[];
     var today = new Date();
     var dd = today.getDate();

@@ -54,10 +54,13 @@
 
     <div class="row">
 
-        <div class="col-sm-3 col-md-2  sidebar">
+        <div class="col-sm-3 col-md-2  sidebar" ng-show="true">
 
 
             <ul class="nav nav-sidebar">
+
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    {{clickValue}}
                 <li><a class="sidebar-a" href="#planforward">Plan Forward</a></li>
                 <li><a class="sidebar-a" href="#lookback">Look Back</a></li>
                 <li><a class="sidebar-a" href="#mysenarios">My Scenarios</a></li>
@@ -88,6 +91,14 @@
 
 
 <script src="scripts/main.js"></script>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
 
 </body>
 </html>
