@@ -19,24 +19,24 @@ body {
     background-color: #f8f8f8;
 }
 
-a {
+.breadcrumb a {
     color: #3c3c3c;
 }
 
-a:hover {
+.breadcrumb a:hover {
     color: rgb(240, 83, 35);
     -webkit-transition: height 0.5s, opacity 0.5s, -webkit-transform 0.5s;
     -moz-transition: height 0.5s, opacity 0.5s, -moz-transform 0.5s;
     transition: height 0.5s, opacity 0.5s, transform 0.5s;
     -webkit-transform: translateY(-1px);
     -moz-transform: translateY(-1px);
+    -o-transform: translateY(-1px);
     transform: translateY(-1px);
 }
 
 /*      -----------------nav element setting ------------------*/
 .breadcrumb {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0px 0px 10px 10px;
     border-bottom: 1px solid #727272;
 }
 
@@ -44,16 +44,16 @@ a:hover {
     margin: 20px 20px 20px 20px;
     font-size: 28px;
     float: left;
-    color: #727272;
-    text-shadow: .5px 1px 1px #727272, .5px .5px 1px #000;
+    color: white;
+    text-shadow: 1px 1px 3px #000000;
 }
 
 .logo_s {
-    width: 140px;
-    height: 48px;
-    margin: 0px 0px 0px 2em ;
+    width: 230px;
+    height: 44px;
+    margin: 0px 0px 0px 0px;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px grey;
+    /*box-shadow: 5px 5px 10px grey;*/
 }
 
 /*      --------------end--- -nav element setting ------------------*/
@@ -63,18 +63,50 @@ a:hover {
 
 /*      -----------------page-header ------------------*/
 #page-header-margin-top {
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .sidebar {
-    padding-left:2.5em;
-    padding-top: 50px;
+    width: 190px;
+    padding-top: 20px;
     position: fixed;
-    height: 100%;
+    height: 88%;
     font-size: 16px;
     background-color: rgb(241, 241, 241);
     border-radius: 10px;
     box-shadow: 2px 2px 10px grey;
+    transition: width 2s;
+    -moz-transition: width .5s; /* Firefox 4 */
+    -webkit-transition: width .5s; /* Safari and Chrome */
+    -o-transition: width .5s; /* Opera */
+}
+
+.sidebar-before-left {
+
+}
+
+.sidebar-before-right {
+    padding-left: 200px;
+    transition: padding-left .5s;
+    -moz-transition: padding-left .5s; /* Firefox 4 */
+    -webkit-transition: padding-left .5s; /* Safari and Chrome */
+    -o-transition: padding-left .5s; /* Opera */
+}
+
+.sidebar-after-right {
+    padding-left: 70px;
+    transition: padding-left .5s;
+    -moz-transition: padding-left .5s; /* Firefox 4 */
+    -webkit-transition: padding-left .5s; /* Safari and Chrome */
+    -o-transition: padding-left .5s; /* Opera */
+}
+
+.sidebar-after-left {
+    width: 60px;
+    transition: width .5s;
+    -moz-transition: width .5s; /* Firefox 4 */
+    -webkit-transition: width .5s; /* Safari and Chrome */
+    -o-transition: width .5s; /* Opera */
 }
 
 #page-header-title {
@@ -99,7 +131,7 @@ a:hover {
 /*      -----------end------font style ------------------*/
 /*      -----------------btn ------------------*/
 .btn-orange {
-    font-family: sans-serif;
+    margin: 5px 10px 5px 10px;
     text-transform: uppercase;
     background-color: rgb(240, 83, 35);
     color: #f8f8f8;
@@ -114,8 +146,12 @@ a:hover {
     top: 1px;
     left: 1px;
     -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    -o-transform: translateY(2px);
+    transform: translateY(2px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+    -o-transition: -o-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     font-weight: 700;
 }
@@ -133,25 +169,32 @@ a:hover {
     text-transform: uppercase;
     color: #727272;
 }
-.btn-nav-roi:hover{
+
+.btn-nav-roi:hover {
     font-weight: 700;
     background-color: #f8f8f8;
     position: relative;
     top: 1px;
     left: 1px;
     -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    -o-transform: translateY(2px);
+    transform: translateY(2px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+    -o-transition: -o-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     color: rgb(240, 83, 35);
     content: attr(data-hover);
 
 }
-.btn-nav-roi:active{
+
+.btn-nav-roi:active {
     font-weight: 700;
     position: relative;
     top: 2px;
 }
+
 /*      ---------end--------btn ------------------*/
 /*      -----------------conponent  setting------------------*/
 .dashboard-p {
@@ -162,26 +205,36 @@ a:hover {
     margin-top: 40px;
 }
 
-.sidebar-a {
+.nav-sidebar li a {
+    color: #3c3c3c;
     text-transform: capitalize;
+    margin-right: 5px;
 
 }
 
-.sidebar-a:hover {
+.nav-sidebar li:hover a {
+    color: rgb(240, 83, 35);
     border-left: 3px solid rgb(240, 83, 35);
-    padding-left: 12px;
-    -webkit-transform: translateX(6px);
+    -webkit-transform: translateX(3px);
+    -moz-transform: translateX(3px);
+    -o-transform: translateX(3px);
+    transform: translateX(3px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+    -o-transition: -moz-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     font-weight: 700;
 }
 
-.sidebar-a:active {
+.nav-sidebar li:active a {
     color: rgb(240, 83, 35);
     position: relative;
     top: 2px;
     font-weight: 700;
+}
+
+#toggle-menu {
+
 }
 
 .video-title {
@@ -210,6 +263,25 @@ a:hover {
 
 .content {
     margin-bottom: 20px;
+}
+
+.icon-goright {
+    float: right;
+
+}
+
+.sidebar-li-margin {
+    margin: 15px 0px 15px 0px;
+    padding: 0;
+}
+
+.toggle-btn {
+    margin-right: 25px;
+}
+
+.sidebar-a {
+    padding-top: 0px;
+    height: 50px;
 }
 
 /*      -----------------conponent  setting------------------*/
