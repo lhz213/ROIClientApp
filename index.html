@@ -53,21 +53,23 @@
 
     <div class="row">
 
-        <div class="col-sm-3 col-md-2  sidebar" ng-show="true">
+        <div class="sidebar"  ng-class="menuState.cssLeft">
 
 
             <ul class="nav nav-sidebar">
+                <i>
+                    <a href="#menu-toggle" id="toggle-menu" class="toggle-btn icon-goright" ng-click="toggleMenu();"><i class="fa fa-bars"></i></a>
+                </i>
 
-                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    {{clickValue}}
-                <li><a class="sidebar-a" href="#planforward">Plan Forward</a></li>
-                <li><a class="sidebar-a" href="#lookback">Look Back</a></li>
-                <li><a class="sidebar-a" href="#mysenarios">My Scenarios</a></li>
-                <li><a class="sidebar-a" href="#compare">Compare</a></li>
+                <br/>
+                <li class="sidebar-li-margin"><a class="sidebar-a" href="#planforward"><span ng-show="menuState.show">Plan Forward</span><img class="icon-goright" src="img/plan.png" width="25" height="25" alt=""/></a></li>
+                <li class="sidebar-li-margin"><a class="sidebar-a" href="#lookback"><span ng-show="menuState.show">Look Back</span><img class="icon-goright" src="img/look.png" width="25" height="25" alt=""/></a></li>
+                <li class="sidebar-li-margin"><a class="sidebar-a" href="#mysenarios"><span ng-show="menuState.show">My Scenarios</span><img class="icon-goright" src="img/my.png" width="25" height="25" alt=""/></a></li>
+                <li class="sidebar-li-margin"><a class="sidebar-a" href="#compare"><span ng-show="menuState.show">Compare</span><img class="icon-goright" src="img/look.png" width="25" height="25" alt=""/></a></li>
             </ul>
 
         </div>
-        <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">
+        <div class="container-fluid" ng-class="menuState.cssRight">
             <div ng-view></div>
         </div>
     </div>
@@ -94,12 +96,6 @@
 <script src="scripts/lookBackPageModule.js"></script>
 <script src="scripts/main.js"></script>
 
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
 
 
 </body>
