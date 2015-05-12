@@ -51,11 +51,11 @@ body {
 }
 
 .logo_s {
-    width: 140px;
-    height: 48px;
-    margin: 0px 0px 0px 2em ;
+    width: 230px;
+    height: 44px;
+    margin: 0px 0px 0px 0px ;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px grey;
+    /*box-shadow: 5px 5px 10px grey;*/
 }
 
 
@@ -68,10 +68,11 @@ body {
 
 /*      -----------------page-header ------------------*/
 #page-header-margin-top {
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .sidebar {
+
     width: 190px;
     padding-top: 20px;
     position: fixed;
@@ -87,13 +88,13 @@ body {
 
 }
 .sidebar-before-right{
-    padding-left: 240px;
+    padding-left: 200px;
 }
 .sidebar-after-right{
     padding-left: 70px;
 }
 .sidebar-after-left{
-    left:-160px;
+    left:-130px;
 }
 
 #page-header-title {
@@ -245,7 +246,7 @@ body {
     padding:0;
 }
 .toggle-btn{
-    margin-right: 19px;
+    margin-right: 25px;
 }
 /*      -----------------conponent  setting------------------*/
 
