@@ -2,7 +2,7 @@
  * Created by ypling on 5/11/15.
  */
 angular.module("ROIClientApp")
-    .controller("scenariosCtrl",function (breadcrumb,$scope,$location) {
+    .controller("scenariosCtrl",function ($scope,$location) {
         //vars
         var viewNames = ['list', 'export', 'retrieve', 'share'];
 
@@ -73,7 +73,7 @@ angular.module("ROIClientApp")
         //scope functions
 
         $scope.switchToView = function (viewName) {
-            breadcrumb.path("myscenarios/"+viewName);
+            $location.path("myscenarios/"+viewName);
         };
 
         $scope.slecteRow = function (obj) {
