@@ -28,6 +28,23 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
             })
     });
 app.controller("indexCtrl",function($scope){
+    $scope.menuState = {  show: true, cssLeft:"sidebar-before-left",cssRight:"sidebar-before-right" };
+
+    $scope.toggleMenu = function() {
+        $scope.menuState.show = !$scope.menuState.show;
+        if(!$scope.menuState.show){
+            $scope.menuState.cssLeft="sidebar-after-left";
+            $scope.menuState.cssRight="sidebar-after-right";
+        }
+        else{
+            $scope.menuState.cssLeft="sidebar-before-left";
+            $scope.menuState.cssRight="sidebar-before-right";
+        }
+
+
+
+    };
+
     $scope.users=[];
     var today = new Date();
     var dd = today.getDate();
@@ -39,6 +56,8 @@ app.controller("indexCtrl",function($scope){
         name:"Ed",
         recentlyLoginRecord : "Last Logged on"+recentDate
     });
+
+
 
 
 
