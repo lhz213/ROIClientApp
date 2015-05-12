@@ -14,9 +14,17 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
                 templateUrl: './views/lookback.html',
                 controller: 'backCtrl'
             })
-            .when('/mysenarios', {
-                templateUrl: './views/mysenarios.html',
+            .when('/myscenarios', {
+                templateUrl: './views/myscenarios/list.html',
                 controller: 'scenariosCtrl'
+            })
+            .when('/myscenarios/export', {
+                templateUrl: './views/myscenarios/export.html',
+                controller: 'scenariosExportCtrl'
+            })
+            .when('/myscenarios/share', {
+                templateUrl: './views/myscenarios/share.html',
+                controller: 'scenariosShareCtrl'
             })
             .when('/compare', {
                 templateUrl: './views/compare.html',
@@ -56,112 +64,4 @@ app.controller("indexCtrl",function($scope){
         name:"Ed",
         recentlyLoginRecord : "Last Logged on"+recentDate
     });
-
-
-
-
-
 });
-
-app.controller("scenariosCtrl", function ($scope) {
-        function activeCount(arr){
-            var result = 0;
-            arr.forEach(function(obj){
-                if(obj.isActive){
-                    result++;
-                }
-            });
-            return result;
-        }
-
-        var viewName = ['list','export','retrieve','share'];
-
-        $scope.activeView = viewName[0];
-        $scope.path=
-            [{title:"Scenarios",link:function(){}},
-             {title:"Save",link:function(){}}
-            ];
-        $scope.operations ={
-            Compare:{disable:true},
-            Delete:{disable:true},
-            Export:{disable:true},
-            Retrieve:{disable:true},
-            Share:{disable:true}
-        };
-        $scope.slecteRow = function(obj){
-            obj.isActive = !obj.isActive;
-            switch (activeCount($scope.scenarios)){
-                case 0:
-                    Object.keys($scope.operations).forEach(function(key){
-                        $scope.operations[key].disable = true;
-                    });
-                    break;
-                case 2:
-                    $scope.operations['Compare'].disable = false;
-                    break;
-                case 1:
-                    Object.keys($scope.operations).forEach(function(key){
-                    if(key!=='Compare'){
-                        $scope.operations[key].disable = false;
-                    }else{
-                        $scope.operations[key].disable = true;
-                    }
-                });
-                    break;
-                default:
-                    Object.keys($scope.operations).forEach(function(key){
-                        if(key!=='Delete'){
-                            $scope.operations[key].disable = true;
-                        }else{
-                            $scope.operations[key].disable = false;
-                        }
-                    });
-                    break;
-            }
-        };
-        $scope.scenarios = [];
-        $scope.scenarios.push({
-            isActive:false,
-            id: "id",
-            name: "name",
-            note: "note",
-            createDate: "createDate",
-            beginMonth: "beginMonth",
-            endMonth: "endMonth",
-            brand: "brand",
-            plannedSpend: "plannedSpend",
-            AM: "AM",
-            historyIncluded: "historyIncluded",
-            DataThrough: "DataThrough",
-            shared: "shared"
-        },{
-            isActive:false,
-            id: "id",
-            name: "name",
-            note: "note",
-            createDate: "createDate",
-            beginMonth: "beginMonth",
-            endMonth: "endMonth",
-            brand: "brand",
-            plannedSpend: "plannedSpend",
-            AM: "AM",
-            historyIncluded: "historyIncluded",
-            DataThrough: "DataThrough",
-            shared: "shared"
-        },{
-            isActive:false,
-            id: "id",
-            name: "name",
-            note: "note",
-            createDate: "createDate",
-            beginMonth: "beginMonth",
-            endMonth: "endMonth",
-            brand: "brand",
-            plannedSpend: "plannedSpend",
-            AM: "AM",
-            historyIncluded: "historyIncluded",
-            DataThrough: "DataThrough",
-            shared: "shared"
-        })
-    }
-);

@@ -1,0 +1,71 @@
+<style>
+    .active-row >td{
+        background-color: orangered;
+        color: #ffffff;
+    }
+</style>
+<div class="container-fluid">
+    <!--nav bar-->
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#dashBoard">Dash Board</a></li>
+            <li>My Scenarios</a></li>
+        </ol>
+    </div>
+    <!--end nav bar-->
+    <!--button bar-->
+    <div class="row">
+            <span class="btn btn-orange" ng-class="{'disabled':operation.disable}"
+                  ng-click="switchToView(key)"
+                  ng-repeat="(key,operation) in operations">{{key}}</span>
+    </div>
+    <!--table view-->
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th colspan="3">Scenario</th>
+                    <th rowspan="2">Owner</th>
+                    <th rowspan="2">Final?</th>
+                    <th rowspan="2">Create Date</th>
+                    <th rowspan="2">Begin Month</th>
+                    <th rowspan="2">End Month</th>
+                    <th rowspan="2">Brand</th>
+                    <th rowspan="2">Planned Spend</th>
+                    <th rowspan="2">AM</th>
+                    <th rowspan="2">History Included?</th>
+                    <th rowspan="2">Data Through</th>
+                    <th rowspan="2">Shared?</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <p></p>
+                <tr ng-click="slecteRow(scenario)" ng-repeat="scenario in scenarios"
+                    ng-class="{'active-row':scenario.isActive}">
+                    <td>{{scenario.id}}</td>
+                    <td>{{scenario.name}}</td>
+                    <td>{{scenario.note}}</td>
+                    <td>{{scenario.owner}}</td>
+                    <td>{{scenario.final}}</td>
+                    <td>{{scenario.createDate}}</td>
+                    <td>{{scenario.beginMonth}}</td>
+                    <td>{{scenario.endMonth}}</td>
+                    <td>{{scenario.brand}}</td>
+                    <td>{{scenario.plannedSpend}}</td>
+                    <td>{{scenario.AM}}</td>
+                    <td>{{scenario.historyIncluded}}</td>
+                    <td>{{scenario.DataThrough}}</td>
+                    <td>{{scenario.shared}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--end table view-->
+</div>
