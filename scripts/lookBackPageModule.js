@@ -4,7 +4,7 @@
 'use strict';
 var moduleName = 'ROIClientAppLookBackModule';
 angular.module(moduleName, [])
-    .controller('backCtrl', ['$scope', '$filter', function ($scope, $filter) {
+    .controller('backCtrl', ['$scope', '$http', function ($scope, $http) {
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
         $scope.attrTooltips = 'attrTooltips';
@@ -15,10 +15,7 @@ angular.module(moduleName, [])
 
         // nav bar
         $scope.nav = {};
-        $scope.nav.items = [];
-        $scope.nav.items[0] = '<a href="">Dash Board</a>';
-        $scope.nav.items[1] = '<a href="#lookback">Look Back</a>';
-        $scope.nav.items[2] = 'Initial Input';
+        $scope.nav.current = 'Initial Input';
 
         // data default
         $scope.lookBack = {};
@@ -29,7 +26,7 @@ angular.module(moduleName, [])
         $scope.lookBack.brand = $scope.brands[0];
 
         // Attribution
-        $scope.lookBack.attribution = 'MAT';
+        $scope.lookBack.attribution = 'MTA';
 
         // calendar
         $scope.opened = {};
@@ -60,10 +57,32 @@ angular.module(moduleName, [])
             }
         };
 
-        $scope.formatCurrency = function () {
-            $scope.lookBack.spend = $filter('formatCurrency')($scope.lookBack.spend);
-        }
 
+        $scope.lookBack.input = {};
+        $scope.lookBack.input.semTSB = 0;
+
+        $scope.calculate = function () {
+            $http.get('/ROIClientApp/dummy_data/output/1430764474_63.json').success(function (data) {
+                $scope.lookBack.output = data;
+                $scope.lookBack.dataThrough = new Date($scope.lookBack.endPeriod);
+                $scope.lookBack.dataThrough.setMonth($scope.lookBack.include ? $scope.lookBack.endPeriod.getMonth() : $scope.lookBack.endPeriod.getMonth() - 1);
+
+                $scope.lookBack.input.semBSB = $scope.lookBack.output.semBLB - 1 + 1;
+                $scope.lookBack.input.semCSB = $scope.lookBack.output.semCLB - 1 + 1;
+                $scope.lookBack.input.semPSB = $scope.lookBack.output.semPLB - 1 + 1;
+                $scope.lookBack.input.semOSB = $scope.lookBack.output.semOLB - 1 + 1;
+                $scope.lookBack.input.disSB = $scope.lookBack.output.disLB - 1 + 1;
+                $scope.lookBack.input.socSB = $scope.lookBack.output.socLB - 1 + 1;
+                $scope.lookBack.input.affSB = $scope.lookBack.output.affLB - 1 + 1;
+                $scope.lookBack.input.parSB = $scope.lookBack.output.parLB - 1 + 1;
+                $scope.lookBack.output.semTLB = ($scope.lookBack.output.semBLB - 1) + ($scope.lookBack.output.semCLB - 1) + ($scope.lookBack.output.semPLB - 1) + ($scope.lookBack.output.semOLB - 1) + 4;
+                $scope.lookBack.output.semTUB = ($scope.lookBack.output.semBUB - 1) + ($scope.lookBack.output.semCUB - 1) + ($scope.lookBack.output.semPUB - 1) + ($scope.lookBack.output.semOUB - 1) + 4;
+                $scope.lookBack.input.semTSB = $scope.lookBack.input.semBSB + $scope.lookBack.input.semCSB + $scope.lookBack.input.semPSB + $scope.lookBack.input.semOSB;
+
+                console.log($scope.lookBack.input.semTSB);
+                $scope.nav.current = 'Output';
+            });
+        }
     }])
     .directive('format', ['$filter', function ($filter) {
         return {
@@ -115,6 +134,7 @@ angular.module(moduleName, [])
     .filter('formatCurrency', function () {
         return function (input) {
             input = input || 0;
-            return Number(input).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            var output = Number(input).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').toString();
+            return "$" + output.substr(0, output.length - 3);
         }
     });
