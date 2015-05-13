@@ -13,22 +13,7 @@ angular.module(moduleName, [])
         $scope.spendTooltips = 'spendTooltips';
         $scope.includeTooltips = 'includeTooltips';
 
-        // nav bar
-        $scope.nav = {};
-        $scope.nav.current = 'Initial Input';
-
-        // data default
-        $scope.lookBack = {};
-        $scope.lookBack.include = true;
-
-        // Brand
-        $scope.brands = ['Shutterfly'];
-        $scope.lookBack.brand = $scope.brands[0];
-
-        // Attribution
-        $scope.lookBack.attribution = 'MTA';
-
-        // calendar
+        // Calendar settings
         $scope.opened = {};
         $scope.format = 'MMMM-yy';
         $scope.dateOptions = {
@@ -36,30 +21,55 @@ angular.module(moduleName, [])
             startingDay: 1,
             minMode: 'month'
         };
-
         $scope.today = function () {
             $scope.lookBack.beginPeriod = new Date();
             $scope.lookBack.endPeriod = new Date();
             $scope.maxDate = new Date();
         };
-        $scope.today();
         $scope.open = function ($event, model) {
             $event.preventDefault();
             $event.stopPropagation();
 
             if (model === 'lookBackBeginPeriod') {
-                $scope.opened.lookBackBeginPeriod = true;
+                $scope.opened.lookBackBeginPeriod = !$scope.opened.lookBackBeginPeriod;
                 $scope.opened.lookBackEndPeriod = false;
             } else {
                 $scope.minDate = new Date($scope.lookBack.beginPeriod);
+                $scope.opened.lookBackEndPeriod = !$scope.opened.lookBackEndPeriod;
                 $scope.opened.lookBackBeginPeriod = false;
-                $scope.opened.lookBackEndPeriod = true;
             }
         };
 
+        // init data default
+        $scope.resetForm = function(){
+            // Nav bar
+            $scope.nav = {};
+            $scope.nav.current = 'Initial Input';
 
-        $scope.lookBack.input = {};
-        $scope.lookBack.input.semTSB = 0;
+            // Data
+            $scope.lookBack = {};
+
+            // Brand
+            $scope.brands = ['Shutterfly'];
+            $scope.lookBack.brand = $scope.brands[0];
+
+            // Attribution
+            $scope.lookBack.attribution = 'MTA';
+
+            // Include data
+            $scope.lookBack.include = true;
+
+            // Calendar
+            $scope.today();
+
+            // Table
+            $scope.lookBack.input = {};
+        };
+        $scope.resetForm();
+
+        // table
+        // sem-brand, sem-card, sem-photobook, sem-other show and hide
+        $scope.showSemItems = true;
 
         $scope.calculate = function () {
             $http.get('/ROIClientApp/dummy_data/output/1430764474_63.json').success(function (data) {
@@ -67,35 +77,29 @@ angular.module(moduleName, [])
                 $scope.lookBack.dataThrough = new Date($scope.lookBack.endPeriod);
                 $scope.lookBack.dataThrough.setMonth($scope.lookBack.include ? $scope.lookBack.endPeriod.getMonth() : $scope.lookBack.endPeriod.getMonth() - 1);
 
-                $scope.lookBack.input.semBSB = $scope.lookBack.output.semBLB - 1 + 1;
-                $scope.lookBack.input.semCSB = $scope.lookBack.output.semCLB - 1 + 1;
-                $scope.lookBack.input.semPSB = $scope.lookBack.output.semPLB - 1 + 1;
-                $scope.lookBack.input.semOSB = $scope.lookBack.output.semOLB - 1 + 1;
-                $scope.lookBack.input.disSB = $scope.lookBack.output.disLB - 1 + 1;
-                $scope.lookBack.input.socSB = $scope.lookBack.output.socLB - 1 + 1;
-                $scope.lookBack.input.affSB = $scope.lookBack.output.affLB - 1 + 1;
-                $scope.lookBack.input.parSB = $scope.lookBack.output.parLB - 1 + 1;
-                $scope.lookBack.output.semTLB = ($scope.lookBack.output.semBLB - 1) + ($scope.lookBack.output.semCLB - 1) + ($scope.lookBack.output.semPLB - 1) + ($scope.lookBack.output.semOLB - 1) + 4;
-                $scope.lookBack.output.semTUB = ($scope.lookBack.output.semBUB - 1) + ($scope.lookBack.output.semCUB - 1) + ($scope.lookBack.output.semPUB - 1) + ($scope.lookBack.output.semOUB - 1) + 4;
-                $scope.lookBack.input.semTSB = $scope.lookBack.input.semBSB + $scope.lookBack.input.semCSB + $scope.lookBack.input.semPSB + $scope.lookBack.input.semOSB;
+                // set default value of input
+                $scope.lookBack.input.semBSB = Number($scope.lookBack.output.semBLB);
+                $scope.lookBack.input.semCSB = Number($scope.lookBack.output.semCLB);
+                $scope.lookBack.input.semPSB = Number($scope.lookBack.output.semPLB);
+                $scope.lookBack.input.semOSB = Number($scope.lookBack.output.semOLB);
+                $scope.lookBack.input.disSB = Number($scope.lookBack.output.disLB);
+                $scope.lookBack.input.socSB = Number($scope.lookBack.output.socLB);
+                $scope.lookBack.input.affSB = Number($scope.lookBack.output.affLB);
+                $scope.lookBack.input.parSB = Number($scope.lookBack.output.parLB);
 
-                console.log($scope.lookBack.input.semTSB);
+                // jump to output page
                 $scope.nav.current = 'Output';
             });
-        }
+        };
     }])
     .directive('format', ['$filter', function ($filter) {
         return {
             require: '?ngModel',
             link: function (scope, elem, attrs, ctrl) {
                 if (!ctrl) return;
-
-
                 ctrl.$formatters.unshift(function (a) {
                     return $filter(attrs.format)(ctrl.$modelValue)
                 });
-
-
                 ctrl.$parsers.unshift(function (viewValue) {
                     var plainNumber = viewValue;
                     elem.val($filter(attrs.format)(plainNumber));
@@ -105,6 +109,19 @@ angular.module(moduleName, [])
             }
         };
     }])
+    .directive('stringToNumber', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function (value) {
+                    return '' + value;
+                });
+                ngModel.$formatters.push(function (value) {
+                    return parseFloat(value, 10);
+                });
+            }
+        };
+    })
     .filter('formatDate', function () {
         function format(element, input) {
             switch (element) {

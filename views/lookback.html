@@ -2,7 +2,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#/">Dash Board</a></li>
-            <li><a href="#lookback">Look Back</a></li>
+            <li><a href="javascript:void(0)" ng-click="nav.current='Initial Input'">Look Back</a></li>
             <li>Initial Input</li>
         </ol>
     </div>
@@ -46,7 +46,7 @@
                                ng-required="true" close-text="Close"/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"
-                                    ng-click="open(event, 'lookBackBeginPeriod')">
+                                    ng-click="open($event, 'lookBackBeginPeriod')">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -67,7 +67,7 @@
                                datepicker-mode="'month'"
                                max-date="{{maxDate}}" ng-required="true" close-text="Close"/>
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open(event, 'lookBackEndPeriod')">
+                            <button type="button" class="btn btn-default" ng-click="open($event, 'lookBackEndPeriod')">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -91,7 +91,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#/">Dash Board</a></li>
-            <li><a href="#lookback">Look Back</a></li>
+            <li><a href="javascript:void(0)" ng-click="nav.current='Initial Input'">Look Back</a></li>
             <li><a href="javascript:void(0)" ng-click="nav.current='Initial Input'">Initial Input</a></li>
             <li>Additional Input</li>
         </ol>
@@ -100,30 +100,34 @@
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">Brand:</label>
-
-                <div class="col-xs-11 col-sm-4 well well-sm">
-                    {{lookBack.brand}}
+                <div class="col-xs-11 col-sm-4">
+                    <div class="well well-sm">
+                        {{lookBack.brand}}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">Attribution:</label>
-
-                <div class="col-xs-11 col-sm-4 well well-sm">
-                    {{lookBack.attribution}}
+                <div class="col-xs-11 col-sm-4">
+                    <div class="well well-sm">
+                        {{lookBack.attribution}}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">Begin Period:</label>
-
-                <div class="col-xs-11 col-sm-4 well well-sm">
-                    {{lookBack.beginPeriod | formatDate}}
+                <div class="col-xs-11 col-sm-4">
+                    <div class="well well-sm">
+                        {{lookBack.beginPeriod | formatDate}}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">End Period:</label>
-
-                <div class="col-xs-11 col-sm-4 well well-sm">
-                    {{lookBack.endPeriod | formatDate}}
+                <div class="col-xs-11 col-sm-4">
+                    <div class="well well-sm">
+                        {{lookBack.endPeriod | formatDate}}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -137,9 +141,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-xs-12 col-sm-2 control-label">Include data through {{lookBack.endPeriod |
-                    formatDate}}:</label>
-
+                <label class="col-xs-12 col-sm-2 control-label">
+                    Include data through<br> {{lookBack.endPeriod | formatDate}}:
+                </label>
                 <div class="col-xs-11 col-sm-4">
                     <button id="lookBackInclude" type="button" class="btn btn-default" ng-model="lookBack.include"
                             btn-checkbox>
@@ -167,7 +171,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#/">Dash Board</a></li>
-            <li><a href="#lookback">Look Back</a></li>
+            <li><a href="javascript:void(0)" ng-click="nav.current='Initial Input'">Look Back</a></li>
             <li><a href="javascript:void(0)" ng-click="nav.current='Initial Input'">Initial Input</a></li>
             <li><a href="javascript:void(0)" ng-click="nav.current='Additional Input'">Additional Input</a></li>
             <li>Output</li>
@@ -214,138 +218,169 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>SEM Total</td>
+                        <td ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>
                         <td>{{lookBack.output.semSR | formatCurrency}}</td>
                         <td></td>
-                        <td>{{lookBack.output.semTLB | formatCurrency}}</td>
-                        <td>{{lookBack.input.semBSB + lookBack.input.semCSB + lookBack.input.semPSB + lookBack.input.semOSB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semTUB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semTLB =  (lookBack.output.semBLB - 1) + (lookBack.output.semCLB - 1) + (lookBack.output.semPLB - 1) + (lookBack.output.semOLB - 1) + 4">{{lookBack.output.semTLB | formatCurrency}}</td>
+                        <td ng-model="lookBack.input.semTSB = lookBack.input.semBSB - 1 + (lookBack.input.semCSB - 1) + (lookBack.input.semPSB - 1) + (lookBack.input.semOSB - 1) + 4">{{lookBack.input.semTSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semTUB =  (lookBack.output.semBUB - 1) + (lookBack.output.semCUB - 1) + (lookBack.output.semPUB - 1) + (lookBack.output.semOUB - 1) + 4">{{lookBack.output.semTUB | formatCurrency}}</td>
                         <td></td>
-                        <td>{{lookBack.output.semSR - (lookBack.input.semBSB + lookBack.input.semCSB + lookBack.input.semPSB + lookBack.input.semOSB) | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semTSD = lookBack.output.semSR - lookBack.input.semTSB">{{lookBack.output.semTSD | formatCurrency}}</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr ng-show="showSemItems">
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;SEM-Brand</td>
                         <td>{{lookBack.output.semBSR | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                         <td>{{lookBack.output.semBLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputSemBSB"></label>
-                            <input id="lookBackInputSemBSB" ng-model="lookBack.input.semBSB" type="number" class="form-control" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputSemBSB"></label>
+                                <input id="lookBackInputSemBSB" type="number" string-to-number ng-model="lookBack.input.semBSB" class="form-control" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}">
+                                <label class="sr-only" for="lookBackInputSemBSBRange"></label>
+                                <input ng-model="lookBack.input.semBSB" id="lookBackInputSemBSBRange" type="range" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.semBUB | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
-                        <td>{{lookBack.output.semBSR - lookBack.input.semBSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semBSD = lookBack.output.semBSR - lookBack.input.semBSB">{{lookBack.output.semBSD | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                     </tr>
-                    <tr>
+                    <tr ng-show="showSemItems">
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;SEM-Cards</td>
                         <td>{{lookBack.output.semCSR | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                         <td>{{lookBack.output.semCLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputSemCSB"></label>
-                            <input id="lookBackInputSemCSB" ng-model="lookBack.input.semCSB" type="number" class="form-control" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputSemCSB"></label>
+                                <input id="lookBackInputSemCSB" type="number" string-to-number ng-model="lookBack.input.semCSB" class="form-control" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}">
+                                <label class="sr-only" for="lookBackInputSemCSBRange"></label>
+                                <input ng-model="lookBack.input.semCSB" id="lookBackInputSemCSBRange" type="range" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.semCUB | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
-                        <td>{{lookBack.output.semCSR - lookBack.input.semCSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semCSD = lookBack.output.semCSR - lookBack.input.semCSB">{{lookBack.output.semCSD | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                     </tr>
-                    <tr>
+                    <tr ng-show="showSemItems">
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;SEM-Photobook</td>
                         <td>{{lookBack.output.semPSR | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                         <td>{{lookBack.output.semPLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputSemPSB"></label>
-                            <input id="lookBackInputSemPSB" ng-model="lookBack.input.semPSB" type="number" class="form-control" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputSemPSB"></label>
+                                <input id="lookBackInputSemPSB" type="number" string-to-number ng-model="lookBack.input.semPSB" class="form-control" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}">
+                                <label class="sr-only" for="lookBackInputSemPSBRange"></label>
+                                <input ng-model="lookBack.input.semPSB" id="lookBackInputSemPSBRange" type="range" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.semPUB | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
-                        <td>{{lookBack.output.semPSR - lookBack.input.semPSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semPSD = lookBack.output.semPSR - lookBack.input.semPSB">{{lookBack.output.semPSD | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                     </tr>
-                    <tr>
+                    <tr ng-show="showSemItems">
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;SEM-Others</td>
                         <td>{{lookBack.output.semOSR | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                         <td>{{lookBack.output.semOLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputSemOSB"></label>
-                            <input id="lookBackInputSemOSB" ng-model="lookBack.input.semOSB" type="number" class="form-control" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputSemOSB"></label>
+                                <input id="lookBackInputSemOSB" type="number" string-to-number ng-model="lookBack.input.semOSB" class="form-control" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
+                                <label class="sr-only" for="lookBackInputSemOSBRange"></label>
+                                <input ng-model="lookBack.input.semOSB" id="lookBackInputSemOSBRange" type="range" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.semOUB | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
-                        <td>{{lookBack.output.semOSR - lookBack.input.semOSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.semOSD = lookBack.output.semOSR - lookBack.input.semOSB">{{lookBack.output.semOSD | formatCurrency}}</td>
                         <td class="table-disabled-cell">-</td>
                     </tr>
                     <tr>
                         <td>Display</td>
                         <td>{{lookBack.output.disSR | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
                         <td>{{lookBack.output.disLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputDisSB"></label>
-                            <input id="lookBackInputDisSB" ng-model="lookBack.input.disSB" type="number" class="form-control" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputDisSB"></label>
+                                <input id="lookBackInputDisSB" type="number" string-to-number ng-model="lookBack.input.disSB" class="form-control" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}">
+                                <label class="sr-only" for="lookBackInputDisSBRange"></label>
+                                <input ng-model="lookBack.input.disSB" id="lookBackInputDisSBRange" type="range" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.disUB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
-                        <td>{{lookBack.output.disSR - lookBack.input.disSB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
+                        <td ng-model="lookBack.output.disSD = lookBack.output.disSR - lookBack.input.disSB">{{lookBack.output.disSD | formatCurrency}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Social(FB)</td>
                         <td>{{lookBack.output.socSR | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
                         <td>{{lookBack.output.socLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputSocSB"></label>
-                            <input id="lookBackInputSocSB" ng-model="lookBack.input.socSB" type="number" class="form-control" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputSocSB"></label>
+                                <input id="lookBackInputSocSB" type="number" string-to-number ng-model="lookBack.input.socSB" class="form-control" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}">
+                                <label class="sr-only" for="lookBackInputSocSBRange"></label>
+                                <input ng-model="lookBack.input.socSB" id="lookBackInputSocSBRange" type="range" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.socUB | formatCurrency}}</td>
-                        <td>{{lookBack.output.disUB | formatCurrency}}</td>
-                        <td>{{lookBack.output.socSR - lookBack.input.socSB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
+                        <td ng-model="lookBack.output.socSD = lookBack.output.socSR - lookBack.input.socSB">{{lookBack.output.socSD | formatCurrency}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Affiliates</td>
                         <td>{{lookBack.output.affSR | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
                         <td>{{lookBack.output.affLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputAffSB"></label>
-                            <input id="lookBackInputAffSB" ng-model="lookBack.input.affSB" type="number" class="form-control" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputAffSB"></label>
+                                <input id="lookBackInputAffSB" type="number" string-to-number ng-model="lookBack.input.affSB" class="form-control" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}">
+                                <label class="sr-only" for="lookBackInputAffSBRange"></label>
+                                <input ng-model="lookBack.input.affSB" id="lookBackInputAffSBRange" type="range" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.affUB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
-                        <td>{{lookBack.output.affSR - lookBack.input.affSB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
+                        <td ng-model="lookBack.output.affSD = lookBack.output.affSR - lookBack.input.affSB">{{lookBack.output.affSD | formatCurrency}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Partners</td>
                         <td>{{lookBack.output.parSR | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
                         <td>{{lookBack.output.parLB | formatCurrency}}</td>
                         <td>
-                            <label class="sr-only" for="lookBackInputParSB"></label>
-                            <input id="lookBackInputParSB" ng-model="lookBack.input.parSB" type="number" class="form-control" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}">
+                            <div class="form-group-sm">
+                                <label class="sr-only" for="lookBackInputParSB"></label>
+                                <input id="lookBackInputParSB" type="number" string-to-number ng-model="lookBack.input.parSB" class="form-control" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}">
+                                <label class="sr-only" for="lookBackInputParSBRange"></label>
+                                <input ng-model="lookBack.input.parSB" id="lookBackInputParSBRange" type="range" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}">
+                            </div>
                         </td>
                         <td>{{lookBack.output.parUB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
-                        <td>{{lookBack.output.parSR - lookBack.input.parSB | formatCurrency}}</td>
-                        <td>{{lookBack.output.semCLB | formatCurrency}}</td>
+                        <td></td>
+                        <td ng-model="lookBack.output.parSD = lookBack.output.parSR - lookBack.input.parSB">{{lookBack.output.parSD | formatCurrency}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Portfolio Total</td>
                         <td>{{lookBack.output.totSR | formatCurrency}}</td>
                         <td></td>
+                        <td ng-model="lookBack.output.totLB = lookBack.output.semTLB + (lookBack.output.disLB - 1) + (lookBack.output.socLB - 1) + (lookBack.output.affLB - 1) + (lookBack.output.parLB - 1) + 4">{{lookBack.output.totLB | formatCurrency}}</td>
+                        <td ng-model="lookBack.input.totSB = lookBack.input.semTSB + (lookBack.input.disSB - 1) + (lookBack.input.socSB - 1) + (lookBack.input.affSB - 1) + (lookBack.input.parSB - 1) + 4">{{lookBack.input.totSB | formatCurrency}}</td>
+                        <td ng-model="lookBack.output.totUB = lookBack.output.semTUB + (lookBack.output.disUB - 1) + (lookBack.output.socUB - 1) + (lookBack.output.affUB - 1) + (lookBack.output.parUB - 1) + 4">{{lookBack.output.totUB | formatCurrency}}</td>
                         <td></td>
-                        <td>{{lookBack.input.semBSB + lookBack.input.semCSB + lookBack.input.semPSB + lookBack.input.semOSB
-                            + lookBack.input.disSB + lookBack.input.socSB + lookBack.input.affSB + lookBack.input.parSB | formatCurrency}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td ng-model="lookBack.output.totSD = lookBack.output.semTSD + lookBack.output.disSD + lookBack.output.socSD + lookBack.output.affSD + lookBack.output.parSD">{{lookBack.output.totSD | formatCurrency}}</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -385,7 +420,7 @@
                 <button type="button" class="btn btn-default" ng-click="">Re-run</button>
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-default" ng-click="">Reset</button>
+                <button type="button" class="btn btn-default" ng-click="resetForm()">Reset</button>
             </div>
         </div>
     </div>
