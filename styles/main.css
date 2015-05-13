@@ -17,6 +17,26 @@
  *************************************************/
 body {
     background-color: #f8f8f8;
+    font-size: 13px;
+}
+
+option{
+    padding:0;
+}
+input{
+    padding:0;
+}
+label{
+    padding-top: 0px;
+}
+table{
+    margin-top:20px;
+}
+
+thead, th, td{
+    width: 50px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .breadcrumb a {
@@ -27,6 +47,7 @@ body {
     color: rgb(240, 83, 35);
     -webkit-transition: height 0.5s, opacity 0.5s, -webkit-transform 0.5s;
     -moz-transition: height 0.5s, opacity 0.5s, -moz-transform 0.5s;
+    -o-transition: height 0.5s, opacity 0.5s, -o-transform 0.5s;
     transition: height 0.5s, opacity 0.5s, transform 0.5s;
     -webkit-transform: translateY(-1px);
     -moz-transform: translateY(-1px);
@@ -76,7 +97,7 @@ body {
     height: 88%;
     font-size: 16px;
     background-color: rgb(241, 241, 241);
-    border-radius: 10px;
+    border-radius:  0 10px 0 0;
     box-shadow: 2px 2px 10px grey;
     transition:width 2s;
     -moz-transition:width .5s; /* Firefox 4 */
@@ -233,7 +254,11 @@ body {
 
 
 #toggle-menu{
-
+    margin-right: 22px;
+    margin-bottom: 20px;
+    cursor:pointer;
+    font-size: 24px;
+    color: rgb(240, 83, 35);
 }
 
 .video-title {
@@ -277,6 +302,23 @@ body {
 .sidebar-a{
    padding-top:0px;
     height: 50px;
+}
+
+
+.well{
+    padding:7px 0 7px 10px;
+    margin:0;
+}
+.well label{
+    padding:0 0 0 10px;
+}
+.well strong{
+    padding:0 0 0 10px;
+}
+
+.elp-info .fa{
+    font-size:25px;
+    padding-top: 5px;
 }
 /*      -----------------conponent  setting------------------*/
 
