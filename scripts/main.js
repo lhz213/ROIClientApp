@@ -26,6 +26,10 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
                 templateUrl: './views/myscenarios/share.html',
                 controller: 'scenariosShareCtrl'
             })
+            .when('/save', {
+                templateUrl: './views/myscenarios/save.html',
+                controller: 'saveCtrl'
+            })
             .when('/compare', {
                 templateUrl: './views/compare.html',
                 controller: 'compareCtrl'
