@@ -17,6 +17,17 @@
  *************************************************/
 body {
     background-color: #f8f8f8;
+    font-size: 12px;
+}
+
+option{
+    padding:0;
+}
+input{
+    padding:0;
+}
+label{
+    padding-top: 0px;
 }
 
 .breadcrumb a {
@@ -277,6 +288,16 @@ body {
 .sidebar-a{
    padding-top:0px;
     height: 50px;
+}
+
+.well{
+    padding:7px 0 7px 0;
+    margin:0;
+}
+
+.elp-info .fa{
+    font-size:25px;
+    padding-top: 5px;
 }
 /*      -----------------conponent  setting------------------*/
 
