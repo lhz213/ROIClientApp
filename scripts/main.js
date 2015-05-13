@@ -26,6 +26,10 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
                 templateUrl: './views/myscenarios/share.html',
                 controller: 'scenariosShareCtrl'
             })
+            .when('/save', {
+                templateUrl: './views/myscenarios/save.html',
+                controller: 'saveCtrl'
+            })
             .when('/compare', {
                 templateUrl: './views/compare.html',
                 controller: 'compareCtrl'
@@ -36,15 +40,17 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
             })
     });
 app.controller("indexCtrl",function($scope){
-    $scope.menuState = {  show: true, cssLeft:"sidebar-before-left",cssRight:"sidebar-before-right" };
+    $scope.menuState = {  show: true, cssLeft:"sidebar-before-left",cssRight:"sidebar-before-right", iconInfo:"fa fa-arrow-left " };
 
     $scope.toggleMenu = function() {
         $scope.menuState.show = !$scope.menuState.show;
         if(!$scope.menuState.show){
+            $scope.menuState.iconInfo="fa fa-arrow-right ";
             $scope.menuState.cssLeft="sidebar-after-left";
             $scope.menuState.cssRight="sidebar-after-right";
         }
         else{
+            $scope.menuState.iconInfo="fa fa-arrow-left ";
             $scope.menuState.cssLeft="sidebar-before-left";
             $scope.menuState.cssRight="sidebar-before-right";
         }

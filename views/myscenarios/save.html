@@ -4,7 +4,7 @@
         <ol class="breadcrumb">
             <li><a href="#dashBoard">Dash Board</a></li>
             <li><a href="#myscenarios">My Scenarios</a></li>
-            <li>Export</li>
+            <li>Save</li>
         </ol>
     </div>
     <!--end nav bar-->
@@ -16,33 +16,13 @@
 
             <div class="col-xs-11 col-sm-4">
                 <div class="well well-sm">
-                    SFLY-May2015-LTA-X-O-001-R1
+                    SFLY-Jun2015-Oct2015-LTA-X-O-001
                 </div>
             </div>
         </div>
-        <!--Scenario name-->
+        <!--input scenario name-->
         <div class="form-group">
             <label class="col-xs-12 col-sm-2 control-label">Scenario Name:</label>
-
-            <div class="col-xs-11 col-sm-4">
-                <div class="well well-sm">
-                    SFLY May 2015 Optimized
-                </div>
-            </div>
-        </div>
-        <!--Scenario notes-->
-        <div class="form-group">
-            <label class="col-xs-12 col-sm-2 control-label">Notes about the scenario:</label>
-
-            <div class="col-xs-11 col-sm-4">
-                <div class="well well-sm">
-                    This is the first scenario with Spend and no constraints and using MTA as attribution method
-                </div>
-            </div>
-        </div>
-        <!--input file name-->
-        <div class="form-group">
-            <label class="col-xs-12 col-sm-2 control-label">File Name:</label>
 
             <div class="col-xs-11 col-sm-4">
                 <input class="form-control">
@@ -51,23 +31,34 @@
                 <i class="fa fa-question-circle" tooltip-placement="left" tooltip="tooltip"></i>
             </div>
         </div>
-        <!--select file type-->
+        <!--textarea notes-->
         <div class="form-group">
-            <label class="col-xs-12 col-sm-2 control-label">File Type:</label>
+            <label class="col-xs-12 col-sm-2 control-label">Notes about the scenario:</label>
 
             <div class="col-xs-11 col-sm-4">
-                <select id="lookBackBrand" class="form-control">
-                    <option>Excel</option>
-                </select>
+                <textarea class="form-control"></textarea>
             </div>
             <div class="col-xs-1 elp-info">
                 <i class="fa fa-question-circle" tooltip-placement="left" tooltip="tooltip"></i>
             </div>
         </div>
-        <!--button export and cancel-->
+        <!--checkbox final scenario-->
+        <div class="form-group">
+            <div class="col-xs-11 col-sm-4 col-sm-offset-2">
+            <div class="checkbox">
+                <label class="control-label">
+                    <input type="checkbox"> Final scenario
+                </label>
+            </div>
+                </div>
+            <div class="col-xs-1 elp-info">
+                <i class="fa fa-question-circle" tooltip-placement="left" tooltip="tooltip"></i>
+            </div>
+        </div>
+        <!--button save and cancel-->
         <div class="form-group">
             <div class="col-xs-6 col-xs-offset-0 col-sm-2 col-sm-offset-2">
-                <button type="button" class="btn btn-default">Export</button>
+                <button type="button" class="btn btn-default">Save</button>
             </div>
             <div class="col-xs-6 col-sm-2">
                 <button type="button" class="btn btn-default">Cancel</button>
