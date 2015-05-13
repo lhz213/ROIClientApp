@@ -59,9 +59,10 @@
 
             <ul class="nav nav-sidebar">
                 <i>
-                    <a id="toggle-menu" class="toggle-btn icon-goright" ng-click="toggleMenu();"><i class="fa fa-bars"></i></a>
+                    <a id="toggle-menu" class="toggle-btn icon-goright" ng-click="toggleMenu();"><i ng-class="menuState.iconInfo"></i></a>
                 </i>
 
+                <br/>
                 <br/>
 
                 <li class="sidebar-li-margin"><a class="sidebar-a" href="#lookback"><span ng-show="menuState.show">Look Back</span><img class="icon-goright" src="img/look.png" width="25" height="25" alt=""/></a></li>
