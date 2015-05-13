@@ -97,7 +97,7 @@ thead, th, td{
     height: 88%;
     font-size: 16px;
     background-color: rgb(241, 241, 241);
-    border-radius: 10px;
+    border-radius:  0 10px 0 0;
     box-shadow: 2px 2px 10px grey;
     transition:width 2s;
     -moz-transition:width .5s; /* Firefox 4 */
