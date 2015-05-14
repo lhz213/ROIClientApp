@@ -352,8 +352,7 @@ thead, th, td {
 }
 
 #login h1 {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 5px  5px  5px  5px;
     font-size: 32px;
     padding: 10px;
     margin: 0;
@@ -362,9 +361,9 @@ thead, th, td {
     margin-bottom: 15px;
 }
 
-#login input:not([type="submit"]) {
-    width: 300px;
-    height: 50px;
+#login input[type="text"], #login input[type="password"] {
+    width: 280px;
+    height: 40px;
     border-radius: 6px;
     border: 1px solid rgb(240, 83, 35);
     margin-bottom: 15px;
@@ -376,34 +375,50 @@ thead, th, td {
 
 }
 
-#login input:not([type="submit"]):focus {
+#login input[type="text"]:focus, #login input[type="password"]:focus {
     color: #727272;
-    width: 370px;
+    width: 310px;
     border: 1px solid rgb(240, 83, 35);
     outline: none;
 }
 
+#login .login-checkbox{
+    text-align: left;
+    padding-left: 10%;
 
-#login input[type="submit"] {
-    font-size: 32px;
+}
+#login .login-forget{
+    text-align: right;
+    padding-right: 10%;
+}
+#login input[type="submit"]{
+    font-size: 16px;
     color: #fff;
     background-color: rgb(240, 83, 35);
-    box-shadow: 0 5px 0 0 rgb(240, 83, 35);
-    border: none;
+    border: 1px solid rgb(240, 83, 35);
     padding: 10px;
-    width: 400px;
+    margin:5px;
+    width: 45%;
     display: inline-block;
     position: relative;
     outline: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 5px;
 }
 
-#login input[type="submit"]:active {
+#login input[type="submit"]:hover{
+    color: rgb(240, 83, 35);
+    background-color:#f8f8f8;
+    border: 1px solid rgb(240, 83, 35);
+    box-sizing: border-box;
+
+
+}
+#login input[type="submit"]:active{
     box-shadow: 0 1px 0 0 rgb(240, 83, 35);
-    -webkit-transform: translate(0, 5px);
-    -moz-transform: translate(0, 5px);
-    transform: translate(0, 5px);
+    -webkit-transform: translate(0, 3px);
+    -moz-transform: translate(0, 3px);
+    -o-transform: translate(0, 3px);
+    transform: translate(0, 3px);
 }
 
 /*        ---------end------Login part --------------------------*/
