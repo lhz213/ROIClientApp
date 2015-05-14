@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientAppLookBackModule', 'ngSanitize'])
+var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientAppLookBackModule', 'ROIClientAppPlanForwardModule', 'ngSanitize'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/planforward', {
@@ -18,6 +18,10 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
                 templateUrl: './views/myscenarios/list.html',
                 controller: 'scenariosCtrl'
             })
+            .when('/myscenarios/compare', {
+                templateUrl: './views/myscenarios/compare.html',
+                controller: 'scenariosCompareCtrl'
+            })
             .when('/myscenarios/export', {
                 templateUrl: './views/myscenarios/export.html',
                 controller: 'scenariosExportCtrl'
@@ -26,23 +30,23 @@ var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientA
                 templateUrl: './views/myscenarios/share.html',
                 controller: 'scenariosShareCtrl'
             })
-            .when('/save', {
-                templateUrl: './views/myscenarios/save.html',
+            .when('/lookback/save', {
+                templateUrl: './views/lookback/save.html',
                 controller: 'saveCtrl'
             })
-            .when('/compare', {
-                templateUrl: './views/compare.html',
-                controller: 'compareCtrl'
+            .when('/planforward/save', {
+                templateUrl: './views/planforward/save.html',
+                controller: 'saveCtrl'
             })
             .otherwise({
                 templateUrl: './views/dashboard.html',
                 controller: ''
             })
     });
-app.controller("indexCtrl",function($scope){
+app.controller("indexCtrl", function ($scope) {
     $scope.menuState = {  show: true, cssLeft:"sidebar-before-left",cssRight:"sidebar-before-right", iconInfo:"fa fa-arrow-left " };
 
-    $scope.toggleMenu = function() {
+    $scope.toggleMenu = function () {
         $scope.menuState.show = !$scope.menuState.show;
         if(!$scope.menuState.show){
             $scope.menuState.iconInfo="fa fa-arrow-right ";
@@ -54,20 +58,17 @@ app.controller("indexCtrl",function($scope){
             $scope.menuState.cssLeft="sidebar-before-left";
             $scope.menuState.cssRight="sidebar-before-right";
         }
-
-
-
     };
 
-    $scope.users=[];
+    $scope.users = [];
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1;
-    var recentDate=" "+ today.toDateString().split(" ").splice(0,3).join("-");
+    var mm = today.getMonth() + 1;
+    var recentDate = " " + today.toDateString().split(" ").splice(0, 3).join("-");
     //var recentDate = " "+today.getMonth()+"/"+today.getDate();
 
     $scope.users.push({
-        name:"Ed",
+        name: "Ed",
         recentlyLoginRecord : "Last Logged on"+recentDate
     });
 });

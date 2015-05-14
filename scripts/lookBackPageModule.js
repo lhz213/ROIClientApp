@@ -4,7 +4,7 @@
 'use strict';
 var moduleName = 'ROIClientAppLookBackModule';
 angular.module(moduleName, [])
-    .controller('backCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('backCtrl', function ($scope, $http,$location) {
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
         $scope.attrTooltips = 'attrTooltips';
@@ -91,7 +91,10 @@ angular.module(moduleName, [])
                 $scope.nav.current = 'Output';
             });
         };
-    }])
+        $scope.save = function () {
+            $location.path('lookback/save');
+        }
+    })
     .directive('format', ['$filter', function ($filter) {
         return {
             require: '?ngModel',

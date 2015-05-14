@@ -13,12 +13,6 @@
         </ol>
     </div>
     <!--end nav bar-->
-    <!--button bar-->
-    <div class="row">
-            <span class="btn btn-orange" ng-class="{'disabled':operation.disable}"
-                  ng-click="switchToView(key)"
-                  ng-repeat="(key,operation) in operations">{{key}}</span>
-    </div>
     <!--table view-->
     <div class="row">
         <div class="table-responsive">
@@ -68,4 +62,10 @@
         </div>
     </div>
     <!--end table view-->
+    <!--button bar-->
+    <div class="row">
+            <span class="btn btn-orange" ng-class="{'disabled':operation.disable}"
+                  ng-click="switchToView(key)"
+                  ng-repeat="(key,operation) in operations">{{key}}</span>
+    </div>
 </div>
