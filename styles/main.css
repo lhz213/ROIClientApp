@@ -20,20 +20,23 @@ body {
     font-size: 13px;
 }
 
-option{
-    padding:0;
-}
-input{
-    padding:0;
-}
-label{
-    padding-top: 0px;
-}
-table{
-    margin-top:20px;
+option {
+    padding: 0;
 }
 
-thead, th, td{
+input {
+    padding: 0;
+}
+
+label {
+    padding-top: 0px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+thead, th, td {
     width: 50px;
     text-align: center;
     box-sizing: border-box;
@@ -72,13 +75,10 @@ thead, th, td{
 .logo_s {
     width: 230px;
     height: 44px;
-    margin: 0px 0px 0px 0px ;
+    margin: 0px 0px 0px 0px;
     border-radius: 5px;
     /*box-shadow: 5px 5px 10px grey;*/
 }
-
-
-
 
 /*      --------------end--- -nav element setting ------------------*/
 .empty-container-left {
@@ -97,37 +97,40 @@ thead, th, td{
     height: 88%;
     font-size: 16px;
     background-color: rgb(241, 241, 241);
-    border-radius:  0 10px 0 0;
+    border-radius: 0 10px 0 0;
     box-shadow: 2px 2px 10px grey;
-    transition:width 2s;
-    -moz-transition:width .5s; /* Firefox 4 */
-    -webkit-transition:width .5s; /* Safari and Chrome */
-    -o-transition:width .5s; /* Opera */
+    transition: width 2s;
+    -moz-transition: width .5s; /* Firefox 4 */
+    -webkit-transition: width .5s; /* Safari and Chrome */
+    -o-transition: width .5s; /* Opera */
 }
 
-.sidebar-before-left{
+.sidebar-before-left {
 
 }
-.sidebar-before-right{
+
+.sidebar-before-right {
     padding-left: 200px;
-    transition:padding-left .5s;
-    -moz-transition:padding-left .5s; /* Firefox 4 */
-    -webkit-transition:padding-left .5s; /* Safari and Chrome */
-    -o-transition:padding-left .5s; /* Opera */
+    transition: padding-left .5s;
+    -moz-transition: padding-left .5s; /* Firefox 4 */
+    -webkit-transition: padding-left .5s; /* Safari and Chrome */
+    -o-transition: padding-left .5s; /* Opera */
 }
-.sidebar-after-right{
+
+.sidebar-after-right {
     padding-left: 70px;
-    transition:padding-left .5s;
-    -moz-transition:padding-left .5s; /* Firefox 4 */
-    -webkit-transition:padding-left .5s; /* Safari and Chrome */
-    -o-transition:padding-left .5s; /* Opera */
+    transition: padding-left .5s;
+    -moz-transition: padding-left .5s; /* Firefox 4 */
+    -webkit-transition: padding-left .5s; /* Safari and Chrome */
+    -o-transition: padding-left .5s; /* Opera */
 }
-.sidebar-after-left{
+
+.sidebar-after-left {
     width: 60px;
-    transition:width .5s;
-    -moz-transition:width .5s; /* Firefox 4 */
-    -webkit-transition:width .5s; /* Safari and Chrome */
-    -o-transition:width .5s; /* Opera */
+    transition: width .5s;
+    -moz-transition: width .5s; /* Firefox 4 */
+    -webkit-transition: width .5s; /* Safari and Chrome */
+    -o-transition: width .5s; /* Opera */
 }
 
 #page-header-title {
@@ -172,7 +175,7 @@ thead, th, td{
     transform: translateY(2px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
-    -o-transition:-o-transform 0.5s, opacity 0.5s;
+    -o-transition: -o-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     font-weight: 700;
 }
@@ -190,7 +193,8 @@ thead, th, td{
     text-transform: uppercase;
     color: #727272;
 }
-.btn-nav-roi:hover{
+
+.btn-nav-roi:hover {
     font-weight: 700;
     background-color: #f8f8f8;
     position: relative;
@@ -202,17 +206,19 @@ thead, th, td{
     transform: translateY(2px);
     -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
     -moz-transition: -moz-transform 0.5s, opacity 0.5s;
-    -o-transition:-o-transform 0.5s, opacity 0.5s;
+    -o-transition: -o-transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     color: rgb(240, 83, 35);
     content: attr(data-hover);
 
 }
-.btn-nav-roi:active{
+
+.btn-nav-roi:active {
     font-weight: 700;
     position: relative;
     top: 2px;
 }
+
 /*      ---------end--------btn ------------------*/
 /*      -----------------conponent  setting------------------*/
 .dashboard-p {
@@ -223,14 +229,14 @@ thead, th, td{
     margin-top: 40px;
 }
 
-
-.nav-sidebar li a{
-    color:#3c3c3c;
+.nav-sidebar li a {
+    color: #3c3c3c;
     text-transform: capitalize;
     margin-right: 5px;
 
 }
-.nav-sidebar li:hover a{
+
+.nav-sidebar li:hover a {
     color: rgb(240, 83, 35);
     border-left: 3px solid rgb(240, 83, 35);
     -webkit-transform: translateX(3px);
@@ -244,19 +250,17 @@ thead, th, td{
     font-weight: 700;
 }
 
-.nav-sidebar li:active a{
+.nav-sidebar li:active a {
     color: rgb(240, 83, 35);
     position: relative;
     top: 2px;
     font-weight: 700;
 }
 
-
-
-#toggle-menu{
+#toggle-menu {
     margin-right: 22px;
     margin-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
     font-size: 24px;
     color: rgb(240, 83, 35);
 }
@@ -288,38 +292,118 @@ thead, th, td{
 .content {
     margin-bottom: 20px;
 }
-.icon-goright{
+
+.icon-goright {
     float: right;
 
 }
-.sidebar-li-margin{
-    margin:15px 0px 15px 0px;
-    padding:0;
+
+.sidebar-li-margin {
+    margin: 15px 0px 15px 0px;
+    padding: 0;
 }
-.toggle-btn{
+
+.toggle-btn {
     margin-right: 25px;
 }
-.sidebar-a{
-   padding-top:0px;
+
+.sidebar-a {
+    padding-top: 0px;
     height: 50px;
 }
 
-
-.well{
-    padding:7px 0 7px 10px;
-    margin:0;
-}
-.well label{
-    padding:0 0 0 10px;
-}
-.well strong{
-    padding:0 0 0 10px;
+.well {
+    padding: 7px 0 7px 10px;
+    margin: 0;
 }
 
-.elp-info .fa{
-    font-size:25px;
+.well label {
+    padding: 0 0 0 10px;
+}
+
+.well strong {
+    padding: 0 0 0 10px;
+}
+
+.elp-info .fa {
+    font-size: 25px;
     padding-top: 5px;
 }
-/*      -----------------conponent  setting------------------*/
+
+/*      ---------end--------conponent  setting------------------*/
+
+/*        ---------------Login part --------------------------*/
+
+.login-logo {
+    margin-bottom: 100px;
+    background-color: #f8f8f8;
+}
+
+#login {
+    background-color: #f8f8f8;
+    opacity: .9;
+    height: 280px;
+    width: 400px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 0;
+    text-align: center;
+}
+
+#login h1 {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 32px;
+    padding: 10px;
+    margin: 0;
+    color: #fff;
+    background-color: rgb(240, 83, 35);
+    margin-bottom: 15px;
+}
+
+#login input:not([type="submit"]) {
+    width: 300px;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid rgb(240, 83, 35);
+    margin-bottom: 15px;
+    text-align: center;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    font-family: 'Open Sans', 'sans-serif';
+
+}
+
+#login input:not([type="submit"]):focus {
+    color: #727272;
+    width: 370px;
+    border: 1px solid rgb(240, 83, 35);
+    outline: none;
+}
 
 
+#login input[type="submit"] {
+    font-size: 32px;
+    color: #fff;
+    background-color: rgb(240, 83, 35);
+    box-shadow: 0 5px 0 0 rgb(240, 83, 35);
+    border: none;
+    padding: 10px;
+    width: 400px;
+    display: inline-block;
+    position: relative;
+    outline: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#login input[type="submit"]:active {
+    box-shadow: 0 1px 0 0 rgb(240, 83, 35);
+    -webkit-transform: translate(0, 5px);
+    -moz-transform: translate(0, 5px);
+    transform: translate(0, 5px);
+}
+
+/*        ---------end------Login part --------------------------*/
