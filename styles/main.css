@@ -387,7 +387,7 @@ thead, th, td {
 #login input[type="submit"] {
     font-size: 32px;
     color: #fff;
-    background-color: rgb(240, 83, 35);;
+    background-color: rgb(240, 83, 35);
     box-shadow: 0 5px 0 0 rgb(240, 83, 35);
     border: none;
     padding: 10px;
@@ -400,7 +400,7 @@ thead, th, td {
 }
 
 #login input[type="submit"]:active {
-    box-shadow: 0 1px 0 0 #3C93D5;
+    box-shadow: 0 1px 0 0 rgb(240, 83, 35);
     -webkit-transform: translate(0, 5px);
     -moz-transform: translate(0, 5px);
     transform: translate(0, 5px);
