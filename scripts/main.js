@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientAppLookBackModule', 'ROIClientAppPlanForwardModule', 'ngSanitize'])
+var app = angular.module('ROIClientApp', ['ngRoute', 'ui.bootstrap', 'ROIClientAppLookBackModule', 'ROIClientAppPlanForwardModule', 'ngSanitize','CompareChart'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/planforward', {
