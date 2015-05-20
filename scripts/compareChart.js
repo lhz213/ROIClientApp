@@ -62,7 +62,7 @@ angular.module('CompareChart', [])
                         var valueText = chartSvg.append('text');
                         valueText.text(Math.abs(item.value))
                             .attr('font-size', "20px")
-                            .attr('fill', 'white')
+                            .attr('fill', 'royalblue')
                             .attr('x', Number(oldData[index].value) * oldScaleFactor + midX)
                             .attr('y', barHeight * index + configData.margin.top + textHeight + barHeight / 2)
                             .transition()

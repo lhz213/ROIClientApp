@@ -37,9 +37,9 @@
                     <td>{{scenario.beginMonth}}</td>
                     <td>{{scenario.endMonth}}</td>
                     <td>{{scenario.AM}}</td>
-                    <td>{{scenario.plannedSpend}}</td>
-                    <td>{{scenario.revenue}}</td>
-                    <td>{{scenario.ROI}}</td>
+                    <td>{{scenario.plannedSpend | formatCurrency}}</td>
+                    <td>{{scenario.revenue| formatCurrency}}</td>
+                    <td>{{scenario.ROI}}%</td>
                 </tr>
                 </tbody>
             </table>

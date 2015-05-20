@@ -10,19 +10,13 @@
     <!--end nav bar-->
 
     <div class="row">
-        <style>
-            .table-disabled-cell {
-                text-align: center;
-                background-color: #e3e3e3;
-            }
-        </style>
         <div class="col-sm-8">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-condensed">
                     <thead>
                     <tr>
                         <th rowspan="2">Portfolio Channels</th>
-                        <th colspan="2">SFLY-May2014-01-LTA-Y-001</th>
+                        <th colspan="2">SFLY-May2014-01-LTA-Y-002</th>
                         <th colspan="2">SFLY-May2014-01-LTA-N-001</th>
                         <th colspan="2">Difference</th>
                     </tr>
@@ -37,20 +31,20 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td ng-click="showSemItems = !showSemItems">SEM Total
-                            <button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i
+                        <td>SEM Total
+                            <button class="btn btn-xs btn-default" ng-show="false" ng-click="showSemItems = !showSemItems"><i ng-show="showSemItems" class="fa fa-minus"></i><i
                                     ng-hide="showSemItems" class="fa fa-plus"></i></button>
                         </td>
-                        <td>{{lookBack.output.semSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{1085803 | formatCurrency}}</td>
+                        <td>{{6424142 | formatCurrency}}</td>
                         <td ng-model="lookBack.input.semTSB = lookBack.input.semBSB - 1 + (lookBack.input.semCSB - 1) + (lookBack.input.semPSB - 1) + (lookBack.input.semOSB - 1) + 4">
-                            {{lookBack.input.semTSB | formatCurrency}}
+                            {{1194812 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td> {{6429560 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.semTSD = lookBack.output.semSR - lookBack.input.semTSB">
-                            {{lookBack.output.semTSD | formatCurrency}}
+                            {{1085803-1194812 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{6424142-6429560 | formatCurrency}}</td>
                     </tr>
                     <tr ng-show="showSemItems">
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;SEM-Brand</td>
@@ -109,85 +103,78 @@
                     </tr>
                     <tr>
                         <td>Display</td>
-                        <td>{{lookBack.output.disSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{532792 | formatCurrency}}</td>
+                        <td>{{3032087 | formatCurrency}}</td>
 
                         <td ng-model="lookBack.output.semBSD = lookBack.output.semBSR - lookBack.input.semBSB">
-                            {{lookBack.output.semBSD | formatCurrency}}
+                            {{660557 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{3382826 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.disSD = lookBack.output.disSR - lookBack.input.disSB">
-                            {{lookBack.output.disSD | formatCurrency}}
+                            {{532792-660557 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{3032087-3382826 | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Social(FB)</td>
-                        <td>{{lookBack.output.socSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{500000 | formatCurrency}}</td>
+                        <td>{{2789806 | formatCurrency}}</td>
 
                         <td ng-model="lookBack.output.semBSD = lookBack.output.semBSR - lookBack.input.semBSB">
-                            {{lookBack.output.semBSD | formatCurrency}}
+                            {{37674 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{293862 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.socSD = lookBack.output.socSR - lookBack.input.socSB">
-                            {{lookBack.output.socSD | formatCurrency}}
+                            {{500000-37674 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{2789806-293862 | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Affiliates</td>
-                        <td>{{lookBack.output.affSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{93043 | formatCurrency}}</td>
+                        <td>{{1381622 | formatCurrency}}</td>
 
                         <td ng-model="lookBack.output.semBSD = lookBack.output.semBSR - lookBack.input.semBSB">
-                            {{lookBack.output.semBSD | formatCurrency}}
+                            {{119488 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{1444514 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.affSD = lookBack.output.affSR - lookBack.input.affSB">
-                            {{lookBack.output.affSD | formatCurrency}}
+                            {{93043-119488 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{1381622-1444514 | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Partners</td>
-                        <td>{{lookBack.output.parSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{788362 | formatCurrency}}</td>
+                        <td>{{1858139 | formatCurrency}}</td>
 
                         <td ng-model="lookBack.output.semBSD = lookBack.output.semBSR - lookBack.input.semBSB">
-                            {{lookBack.output.semBSD | formatCurrency}}
+                            {{987468 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{2194748 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.parSD = lookBack.output.parSR - lookBack.input.parSB">
-                            {{lookBack.output.parSD | formatCurrency}}
+                            {{788362-987468 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{1858139-2194748 | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Portfolio Total</td>
-                        <td>{{lookBack.output.totSR | formatCurrency}}</td>
-                        <td></td>
+                        <td>{{3000000 | formatCurrency}}</td>
+                        <td>{{15485795 | formatCurrency}}</td>
                         <td ng-model="lookBack.input.totSB = lookBack.input.semTSB + (lookBack.input.disSB - 1) + (lookBack.input.socSB - 1) + (lookBack.input.affSB - 1) + (lookBack.input.parSB - 1) + 4">
-                            {{lookBack.input.totSB | formatCurrency}}
+                            {{3000000 | formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{13745510 | formatCurrency}}</td>
                         <td ng-model="lookBack.output.totSD = lookBack.output.semTSD + lookBack.output.disSD + lookBack.output.socSD + lookBack.output.affSD + lookBack.output.parSD">
-                            {{lookBack.output.totSD | formatCurrency}}
+                            {{3000000- 3000000| formatCurrency}}
                         </td>
-                        <td></td>
+                        <td>{{15485795-13745510 | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Portfolio ROI</td>
-                        <td colspan="2">%</td>
-                        <td colspan="2">%</td>
-                        <td colspan="2">%</td>
-                    </tr>
-                    <tr>
-                        <td colspan="7"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">Brand Total Improvement</td>
-                        <td>%</td>
+                        <td colspan="2">416%</td>
+                        <td colspan="2">358%</td>
+                        <td colspan="2">58%</td>
                     </tr>
                     </tbody>
                 </table>
