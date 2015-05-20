@@ -64,7 +64,7 @@ angular.module(moduleName, [])
             $scope.lookBack = {};
 
             // Brand
-            $scope.brands = ['Shutterfly'];
+            $scope.brands = ['Brient'];
             $scope.lookBack.brand = $scope.brands[0];
 
             // Attribution

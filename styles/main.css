@@ -33,14 +33,45 @@ label {
 }
 
 table {
+    vertical-align: middle;
     margin-top: 20px;
+    padding:0;
 }
 
-thead, th, td {
-    width: 50px;
+th {
     text-align: center;
+}
+
+.table-fix-width{
+    table-layout: fixed;
+    text-align: center;
+}
+.tr-fix-width-label{
+    width:100px;
+}
+.tr-fix-width-numx2{
+    width: 200px;
+    text-align: center;
+}
+.tr-fix-width-numx4{
+    width: 400px;
+    text-align: center;
+}
+.tr-text-mid{
+    text-align: center;
+}
+
+.td-fix-width-num{
+    text-align: right;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
     box-sizing: border-box;
 }
+
+
 
 .breadcrumb a {
     color: #3c3c3c;
