@@ -177,15 +177,12 @@
         </ol>
     </div>
     <div class="row">
-        <div class="well well-sm"><label>Scenario ID:</label>{{lookBack.output.ScenarioID}}</div>
-    </div>
-    <div class="row">
-        <div class="well well-sm">
-            <strong>Brand</strong>: {{lookBack.brand}}<br><br>
-            <strong>Attribution</strong>: {{lookBack.attribution}}<br><br>
-            <strong>Begin Period</strong>: {{lookBack.beginPeriod | date: 'MMM-dd-yyyy'}}<br><br>
-            <strong>End Period</strong>: {{lookBack.endPeriod | date: 'MMM-dd-yyyy'}}<br><br>
-            <strong>Portfolio Spend </strong>: {{lookBack.spend | formatCurrency}}<br><br>
+        <div class="well well-sm"><label>Scenario ID:</label>{{lookBack.output.ScenarioID}} <br>
+            <strong>Brand</strong>: {{lookBack.brand}}
+            <strong>Attribution</strong>: {{lookBack.attribution}}
+            <strong>Begin Period</strong>: {{lookBack.beginPeriod | date: 'MMM-dd-yyyy'}}
+            <strong>End Period</strong>: {{lookBack.endPeriod | date: 'MMM-dd-yyyy'}}
+            <strong>Portfolio Spend </strong>: {{lookBack.spend | formatCurrency}}
             <!--<strong>Data through</strong>: {{lookBack.dataThrough | date: 'MMM-dd-yyyy'}}-->
         </div>
     </div>
