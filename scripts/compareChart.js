@@ -24,8 +24,7 @@ angular.module('CompareChart', [])
                     var chartSvg = d3.select('#chart')
                         .append("svg");
                     chartSvg.attr("width", configData.width)
-                        .attr("height", configData.height)
-                        .style("border", "1px solid black");
+                        .attr("height", configData.height);
 
 
                     data.forEach(function (item, index) {
