@@ -43,7 +43,7 @@
                         <input id="lookBackBeginPeriod" type="text" class="form-control" datepicker-popup="{{format}}"
                                ng-model="lookBack.beginPeriod" is-open="opened.lookBackBeginPeriod"
                                datepicker-options="dateOptions" datepicker-mode="'month'" max-date="{{maxDate}}"
-                               ng-required="true" close-text="Close"/>
+                               ng-required="true" close-text="Close" disabled>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"
                                     ng-click="open($event, 'lookBackBeginPeriod')">
@@ -62,10 +62,9 @@
                 <div class="col-xs-11 col-sm-4">
                     <div class="input-group">
                         <input id="lookBackEndPeriod" type="text" class="form-control" datepicker-popup="{{format}}"
-                               ng-model="lookBack.endPeriod" is-open="opened.lookBackEndPeriod"
+                               ng-model="lookBack.endPeriod" is-open="opened.lookBackEndPeriod" ng-change="getLastDate()"
                                min-date="lookBack.beginPeriod" datepicker-options="dateOptions"
-                               datepicker-mode="'month'"
-                               max-date="{{maxDate}}" ng-required="true" close-text="Close"/>
+                               datepicker-mode="'month'" disabled max-date="{{maxDate}}" ng-required="true" close-text="Close">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event, 'lookBackEndPeriod')">
                                 <i class="glyphicon glyphicon-calendar"></i>
@@ -118,7 +117,7 @@
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">Begin Period:</label>
                 <div class="col-xs-11 col-sm-4">
                     <div class="well well-sm">
-                        {{lookBack.beginPeriod | formatDate}}
+                        {{lookBack.beginPeriod | date: 'MMM-dd-yyyy'}}
                     </div>
                 </div>
             </div>
@@ -126,7 +125,7 @@
                 <label for="lookBackBrand" class="col-xs-12 col-sm-2 control-label">End Period:</label>
                 <div class="col-xs-11 col-sm-4">
                     <div class="well well-sm">
-                        {{lookBack.endPeriod | formatDate}}
+                        {{lookBack.endPeriod | date: 'MMM-dd-yyyy'}}
                     </div>
                 </div>
             </div>
@@ -134,15 +133,15 @@
                 <label for="lookBackSpend" class="col-xs-12 col-sm-2 control-label">Portfolio Spend :</label>
 
                 <div class="col-xs-11 col-sm-4">
-                    <input class="form-control" id="lookBackSpend" type="number" min="0.00" ng-model="lookBack.spend">
+                    <input class="form-control" id="lookBackSpend" type="text" ng-model="lookBack.spend" format-input>
                 </div>
                 <div class="col-xs-1 elp-info">
                     <i class="fa fa-question-circle" tooltip-placement="right" tooltip="{{spendTooltips}}"></i>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-hide="true">
                 <label class="col-xs-12 col-sm-2 control-label">
-                    Include data through<br> {{lookBack.endPeriod | formatDate}}:
+                    Include data through<br> {{lookBack.endPeriod | date: 'MMM-dd-yyyy'}}:
                 </label>
                 <div class="col-xs-11 col-sm-4">
                     <button id="lookBackInclude" type="button" class="btn btn-default" ng-model="lookBack.include"
@@ -178,13 +177,16 @@
         </ol>
     </div>
     <div class="row">
-        <div class="well well-sm"><label>Scenario ID:</label>{{lookBack.output.ScenarioID}} <br/>
-            <strong>Brand</strong>: {{lookBack.brand}}
-            <strong>Attribution</strong>: {{lookBack.attribution}}
-            <strong>Begin Period</strong>: {{lookBack.beginPeriod | formatDate}}
-            <strong>End Period</strong>: {{lookBack.endPeriod | formatDate}}
-            <strong>Portfolio Spend </strong>: {{lookBack.spend | formatCurrency}}
-            <strong>Data through</strong>: {{lookBack.dataThrough | formatDate}}
+        <div class="well well-sm"><label>Scenario ID:</label>{{lookBack.output.ScenarioID}}</div>
+    </div>
+    <div class="row">
+        <div class="well well-sm">
+            <strong>Brand</strong>: {{lookBack.brand}}<br><br>
+            <strong>Attribution</strong>: {{lookBack.attribution}}<br><br>
+            <strong>Begin Period</strong>: {{lookBack.beginPeriod | date: 'MMM-dd-yyyy'}}<br><br>
+            <strong>End Period</strong>: {{lookBack.endPeriod | date: 'MMM-dd-yyyy'}}<br><br>
+            <strong>Portfolio Spend </strong>: {{lookBack.spend | formatCurrency}}<br><br>
+            <!--<strong>Data through</strong>: {{lookBack.dataThrough | date: 'MMM-dd-yyyy'}}-->
         </div>
     </div>
     <div class="row">
@@ -201,7 +203,7 @@
                     <tr>
                         <th class="tr-fix-width-label" rowspan="2">Portfolio Channels</th>
                         <th class="tr-fix-width-numx2" colspan="2">Actuals</th>
-                        <th class="tr-fix-width-numx4" colspan="4">{{lookBack.beginPeriod | formatDate}} Optimized</th>
+                        <th class="tr-fix-width-numx4" colspan="4">{{lookBack.beginPeriod | date: 'MMM-dd-yyyy'}} Optimized</th>
                         <th class="tr-fix-width-numx2" colspan="2">Difference</th>
                     </tr>
                     <tr>
@@ -217,7 +219,8 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>
+                        <!--<td ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>-->
+                        <td>SEM Total</td>
                         <td class="td-fix-width-num">{{lookBack.output.semSR | formatCurrency}}</td>
                         <td></td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.semTLB =  (lookBack.output.semBLB - 1) + (lookBack.output.semCLB - 1) + (lookBack.output.semPLB - 1) + (lookBack.output.semOLB - 1) + 4">{{lookBack.output.semTLB | formatCurrency}}</td>
@@ -235,7 +238,7 @@
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputSemBSB"></label>
-                                <input id="lookBackInputSemBSB" type="number" string-to-number ng-model="lookBack.input.semBSB" class="form-control" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}">
+                                <input id="lookBackInputSemBSB" type="text" string-to-number ng-model="lookBack.input.semBSB" class="form-control" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputSemBSBRange"></label>
                                 <input ng-model="lookBack.input.semBSB" id="lookBackInputSemBSBRange" type="range" min="{{lookBack.output.semBLB}}" max="{{lookBack.output.semBUB}}">
                             </div>
@@ -253,7 +256,7 @@
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputSemCSB"></label>
-                                <input id="lookBackInputSemCSB" type="number" string-to-number ng-model="lookBack.input.semCSB" class="form-control" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}">
+                                <input id="lookBackInputSemCSB" type="text" string-to-number ng-model="lookBack.input.semCSB" class="form-control" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputSemCSBRange"></label>
                                 <input ng-model="lookBack.input.semCSB" id="lookBackInputSemCSBRange" type="range" min="{{lookBack.output.semCLB}}" max="{{lookBack.output.semCUB}}">
                             </div>
@@ -271,7 +274,7 @@
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputSemPSB"></label>
-                                <input id="lookBackInputSemPSB" type="number" string-to-number ng-model="lookBack.input.semPSB" class="form-control" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}">
+                                <input id="lookBackInputSemPSB" type="text" string-to-number ng-model="lookBack.input.semPSB" class="form-control" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputSemPSBRange"></label>
                                 <input ng-model="lookBack.input.semPSB" id="lookBackInputSemPSBRange" type="range" min="{{lookBack.output.semPLB}}" max="{{lookBack.output.semPUB}}">
                             </div>
@@ -289,7 +292,7 @@
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputSemOSB"></label>
-                                <input id="lookBackInputSemOSB" type="number" string-to-number ng-model="lookBack.input.semOSB" class="form-control" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
+                                <input id="lookBackInputSemOSB" type="text" string-to-number ng-model="lookBack.input.semOSB" class="form-control" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
                                 <label class="sr-only" for="lookBackInputSemOSBRange"></label>
                                 <input ng-model="lookBack.input.semOSB" id="lookBackInputSemOSBRange" type="range" min="{{lookBack.output.semOLB}}" max="{{lookBack.output.semOUB}}">
                             </div>
@@ -302,85 +305,85 @@
                     <tr>
                         <td>Display</td>
                         <td class="td-fix-width-num">{{lookBack.output.disSR | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.disPR | formatCurrency}}</td>
                         <td class="td-fix-width-num">{{lookBack.output.disLB | formatCurrency}}</td>
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputDisSB"></label>
-                                <input id="lookBackInputDisSB" type="number" string-to-number ng-model="lookBack.input.disSB" class="form-control" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}">
+                                <input id="lookBackInputDisSB" type="text" string-to-number ng-model="lookBack.input.disSB" class="form-control" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputDisSBRange"></label>
                                 <input ng-model="lookBack.input.disSB" id="lookBackInputDisSBRange" type="range" min="{{lookBack.output.disLB}}" max="{{lookBack.output.disUB}}">
                             </div>
                         </td>
                         <td class="td-fix-width-num">{{lookBack.output.disUB | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.disAR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.disSD = lookBack.output.disSR - lookBack.input.disSB">{{lookBack.output.disSD | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.disAR - lookBack.output.disPR | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Social(FB)</td>
                         <td class="td-fix-width-num">{{lookBack.output.socSR | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.socPR | formatCurrency}}</td>
                         <td class="td-fix-width-num">{{lookBack.output.socLB | formatCurrency}}</td>
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputSocSB"></label>
-                                <input id="lookBackInputSocSB" type="number" string-to-number ng-model="lookBack.input.socSB" class="form-control" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}">
+                                <input id="lookBackInputSocSB" type="text" string-to-number ng-model="lookBack.input.socSB" class="form-control" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputSocSBRange"></label>
                                 <input ng-model="lookBack.input.socSB" id="lookBackInputSocSBRange" type="range" min="{{lookBack.output.socLB}}" max="{{lookBack.output.socUB}}">
                             </div>
                         </td>
                         <td class="td-fix-width-num">{{lookBack.output.socUB | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.socAR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.socSD = lookBack.output.socSR - lookBack.input.socSB">{{lookBack.output.socSD | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.socAR - lookBack.output.socPR | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Affiliates</td>
                         <td class="td-fix-width-num">{{lookBack.output.affSR | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.affPR | formatCurrency}}</td>
                         <td class="td-fix-width-num">{{lookBack.output.affLB | formatCurrency}}</td>
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputAffSB"></label>
-                                <input id="lookBackInputAffSB" type="number" string-to-number ng-model="lookBack.input.affSB" class="form-control" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}">
+                                <input id="lookBackInputAffSB" type="text" string-to-number ng-model="lookBack.input.affSB" class="form-control" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputAffSBRange"></label>
                                 <input ng-model="lookBack.input.affSB" id="lookBackInputAffSBRange" type="range" min="{{lookBack.output.affLB}}" max="{{lookBack.output.affUB}}">
                             </div>
                         </td>
                         <td class="td-fix-width-num">{{lookBack.output.affUB | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.affAR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.affSD = lookBack.output.affSR - lookBack.input.affSB">{{lookBack.output.affSD | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.affAR - lookBack.output.affPR | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Partners</td>
                         <td class="td-fix-width-num">{{lookBack.output.parSR | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.parPR | formatCurrency}}</td>
                         <td class="td-fix-width-num">{{lookBack.output.parLB | formatCurrency}}</td>
                         <td>
                             <div class="form-group-sm">
                                 <label class="sr-only" for="lookBackInputParSB"></label>
-                                <input id="lookBackInputParSB" type="number" string-to-number ng-model="lookBack.input.parSB" class="form-control" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}">
+                                <input id="lookBackInputParSB" type="text" string-to-number ng-model="lookBack.input.parSB" class="form-control" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}" format-input>
                                 <label class="sr-only" for="lookBackInputParSBRange"></label>
                                 <input ng-model="lookBack.input.parSB" id="lookBackInputParSBRange" type="range" min="{{lookBack.output.parLB}}" max="{{lookBack.output.parUB}}">
                             </div>
                         </td>
                         <td class="td-fix-width-num">{{lookBack.output.parUB | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.parAR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.parSD = lookBack.output.parSR - lookBack.input.parSB">{{lookBack.output.parSD | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.parAR - lookBack.output.parPR | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Portfolio Total</td>
                         <td class="td-fix-width-num">{{lookBack.output.totSR | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.totPR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.totLB = lookBack.output.semTLB + (lookBack.output.disLB - 1) + (lookBack.output.socLB - 1) + (lookBack.output.affLB - 1) + (lookBack.output.parLB - 1) + 4">{{lookBack.output.totLB | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.input.totSB = lookBack.input.semTSB + (lookBack.input.disSB - 1) + (lookBack.input.socSB - 1) + (lookBack.input.affSB - 1) + (lookBack.input.parSB - 1) + 4">{{lookBack.input.totSB | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.totUB = lookBack.output.semTUB + (lookBack.output.disUB - 1) + (lookBack.output.socUB - 1) + (lookBack.output.affUB - 1) + (lookBack.output.parUB - 1) + 4">{{lookBack.output.totUB | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.totAR | formatCurrency}}</td>
                         <td class="td-fix-width-num" ng-model="lookBack.output.totSD = lookBack.output.semTSD + lookBack.output.disSD + lookBack.output.socSD + lookBack.output.affSD + lookBack.output.parSD">{{lookBack.output.totSD | formatCurrency}}</td>
-                        <td></td>
+                        <td class="td-fix-width-num">{{lookBack.output.totAR - lookBack.output.totPR | formatCurrency}}</td>
                     </tr>
                     <tr>
                         <td>Portfolio ROI</td>
@@ -388,16 +391,15 @@
                         <td class="td-fix-width-num" colspan="4">%</td>
                         <td class="td-fix-width-num" colspan="2">%</td>
                     </tr>
-                    <tr>
-                        <td colspan="9"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="8">Change in Brand Total Revenue</td>
-                        <td class="td-fix-width-num">%</td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td colspan="9"></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td colspan="8">Change in Brand Total Revenue</td>-->
+                        <!--<td class="td-fix-width-num">%</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
-                <compare-chart></compare-chart>
             </div>
         </div>
     </div>
