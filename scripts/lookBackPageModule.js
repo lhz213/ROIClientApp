@@ -4,7 +4,7 @@
 'use strict';
 var moduleName = 'ROIClientAppLookBackModule';
 angular.module(moduleName, [])
-    .controller('backCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('backCtrl', ['$scope', '$filter', '$http', function ($scope, $filter, $http) {
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
         $scope.attrTooltips = 'attrTooltips';
@@ -15,15 +15,16 @@ angular.module(moduleName, [])
 
         // Calendar settings
         $scope.opened = {};
-        $scope.format = 'MMMM-yy';
+        $scope.format = 'MMMM-dd-yyyy';
         $scope.dateOptions = {
-            formatYear: 'yy',
+            formatYear: 'yyyy',
             startingDay: 1,
             minMode: 'month'
         };
         $scope.today = function () {
-            $scope.lookBack.beginPeriod = new Date();
-            $scope.lookBack.endPeriod = new Date();
+            var date = new Date();
+            $scope.lookBack.beginPeriod = new Date(date.getFullYear(), date.getMonth(), 1);
+            $scope.lookBack.endPeriod = new Date(date.getFullYear(), date.getMonth() + 1, 0);
             $scope.maxDate = new Date();
         };
         $scope.open = function ($event, model) {
@@ -39,9 +40,13 @@ angular.module(moduleName, [])
                 $scope.opened.lookBackBeginPeriod = false;
             }
         };
+        $scope.getLastDate = function () {
+            $scope.lookBack.endPeriod = new Date($scope.lookBack.endPeriod);
+            $scope.lookBack.endPeriod = new Date($scope.lookBack.endPeriod.getFullYear(), $scope.lookBack.endPeriod.getMonth() + 1, 0);
+        };
 
         // init data default
-        $scope.resetForm = function(){
+        $scope.resetForm = function () {
             // Nav bar
             $scope.nav = {};
             $scope.nav.current = 'Initial Input';
@@ -50,11 +55,16 @@ angular.module(moduleName, [])
             $scope.lookBack = {};
 
             // Brand
-            $scope.brands = ['Shutterfly'];
+            $scope.brands = ['Brilent'];
             $scope.lookBack.brand = $scope.brands[0];
 
             // Attribution
             $scope.lookBack.attribution = 'MTA';
+
+            //
+            $scope.formatInput = function () {
+                $scope.lookBack.spend = ($filter('formatCurrency')($scope.lookBack.spend)).substr(1);
+            };
 
             // Include data
             $scope.lookBack.include = true;
@@ -69,7 +79,7 @@ angular.module(moduleName, [])
 
         // table
         // sem-brand, sem-card, sem-photobook, sem-other show and hide
-        $scope.showSemItems = true;
+        $scope.showSemItems = false;
 
         $scope.calculate = function () {
             $http.get('/ROIClientApp/dummy_data/output/1430764474_63.json').success(function (data) {
@@ -92,18 +102,19 @@ angular.module(moduleName, [])
             });
         };
     }])
-    .directive('format', ['$filter', function ($filter) {
+    .directive('formatInput', ['$filter', function ($filter) {
         return {
-            require: '?ngModel',
-            link: function (scope, elem, attrs, ctrl) {
-                if (!ctrl) return;
-                ctrl.$formatters.unshift(function (a) {
-                    return $filter(attrs.format)(ctrl.$modelValue)
+            require: 'ngModel',
+            link: function (scope, elem, attrs, ngModel) {
+                if (!ngModel) return;
+
+                ngModel.$formatters.unshift(function (a) {
+                    return $filter('formatCurrency')(ngModel.$modelValue)
                 });
-                ctrl.$parsers.unshift(function (viewValue) {
-                    var plainNumber = viewValue;
-                    elem.val($filter(attrs.format)(plainNumber));
-                    console.log(plainNumber);
+
+                ngModel.$parsers.unshift(function (viewValue) {
+                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                    elem.val($filter('formatCurrency')(plainNumber));
                     return plainNumber;
                 });
             }
@@ -123,8 +134,10 @@ angular.module(moduleName, [])
         };
     })
     .filter('formatDate', function () {
-        function format(element, input) {
+        function formatDateFilter(element, input) {
             switch (element) {
+                case 'dd':
+                    return input.getDate();
                 case 'Month':
                     return input.toDateString().split(' ')[1];
                 case 'MM':
@@ -134,7 +147,7 @@ angular.module(moduleName, [])
                 case 'yy':
                     return input.getYear();
                 default :
-                    return input.toDateString().split(' ')[1] + "-" + input.getFullYear();
+                    return input.toDateString().split(' ')[1] + "-" + input.getDate() + "-" + input.getFullYear();
             }
         }
 
@@ -143,7 +156,7 @@ angular.module(moduleName, [])
             var formatDetail = formatStr ? formatStr.split('-') : ['default'];
             var output = "";
             formatDetail.forEach(function (element) {
-                output = output + " " + format(element, input);
+                output = output + " " + formatDateFilter(element, input);
             });
             return output;
         };
@@ -151,6 +164,9 @@ angular.module(moduleName, [])
     .filter('formatCurrency', function () {
         return function (input) {
             input = input || 0;
+            if (typeof input === 'string') {
+                input = input.split(',').join('');
+            }
             var output = Number(input).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').toString();
             return "$" + output.substr(0, output.length - 3);
         }
