@@ -4,7 +4,21 @@
 'use strict';
 var moduleName = 'ROIClientAppLookBackModule';
 angular.module(moduleName, [])
+    .value('compareChartConfig', {
+        width: 600,
+        height: 500,
+        margin: {left: 50, top: 50, right: 50, bottom: 50}
+    })
     .controller('backCtrl', function ($scope, $http,$location) {
+        //compareChart data
+        $scope.compareChartData = [
+            {title: "item1", value: 10},
+            {title: "item2", value: -50},
+            {title: "item3", value: 100},
+            {title: "item4", value: 150},
+            {title: "item5", value: -90},
+            {title: "item6", value: 100}
+        ];
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
         $scope.attrTooltips = 'attrTooltips';
