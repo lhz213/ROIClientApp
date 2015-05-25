@@ -23,9 +23,10 @@ angular.module(moduleName, [])
         };
         $scope.today = function () {
             var date = new Date();
-            $scope.lookBack.beginPeriod = new Date(date.getFullYear(), date.getMonth(), 1);
-            $scope.lookBack.endPeriod = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+            $scope.lookBack.beginPeriod = new Date(date.getFullYear(), date.getMonth() -1, 1);
+            $scope.lookBack.endPeriod = new Date(date.getFullYear(), date.getMonth(), 0);
             $scope.maxDate = new Date();
+            $scope.maxDate.setMonth($scope.maxDate.getMonth() - 1);
         };
         $scope.open = function ($event, model) {
             $event.preventDefault();
