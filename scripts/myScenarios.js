@@ -2,7 +2,7 @@
  * Created by ypling on 5/11/15.
  */
 angular.module("ROIClientApp")
-    .controller("scenariosCtrl",function ($scope,$location) {
+    .controller("scenariosCtrl", function ($scope, $location) {
         //vars
         var viewNames = ['list', 'export', 'retrieve', 'share'];
 
@@ -38,12 +38,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 3000000,
             AM: "LTA",
-            revenue:13745510,
-            ROI:358,
+            revenue: 13745510,
+            ROI: 358,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2015-06-PF-LTA-002",
             name: "",
@@ -54,12 +54,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 3000000,
             AM: "LTA",
-            revenue:13745510,
-            ROI:416,
+            revenue: 13745510,
+            ROI: 416,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2015-06-PF-LTA-003",
             name: "",
@@ -70,12 +70,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5000000,
             AM: "LTA",
-            revenue:26185980,
-            ROI:424,
+            revenue: 26185980,
+            ROI: 424,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2015-06-PF-LTA-004",
             name: "",
@@ -86,12 +86,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5000000,
             AM: "LTA",
-            revenue:27589330,
-            ROI:452,
+            revenue: 27589330,
+            ROI: 452,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2015-06-PF-LTA-005",
             name: "",
@@ -102,12 +102,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5000000,
             AM: "LTA",
-            revenue:30138290,
-            ROI:503,
+            revenue: 30138290,
+            ROI: 503,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2015-06-PF-MTA-006",
             name: "",
@@ -118,12 +118,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5420305,
             AM: "MTA",
-            revenue:40763387,
-            ROI:652,
+            revenue: 40763387,
+            ROI: 652,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2014-06-PF-LTA-006",
             name: "",
@@ -134,12 +134,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 3000000,
             AM: "LTA",
-            revenue:11610000,
-            ROI:287,
+            revenue: 11610000,
+            ROI: 287,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2014-06-LB-LTA-007",
             name: "",
@@ -150,12 +150,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 4000000,
             AM: "LTA",
-            revenue:15379970,
-            ROI:284,
+            revenue: 15379970,
+            ROI: 284,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2014-06-LB-LTA-008",
             name: "",
@@ -166,12 +166,12 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5000000,
             AM: "LTA",
-            revenue:19989280,
-            ROI:300,
+            revenue: 19989280,
+            ROI: 300,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
-        },{
+        }, {
             isActive: false,
             id: "May2014-06-LB-MTA-009",
             name: "",
@@ -182,8 +182,8 @@ angular.module("ROIClientApp")
             brand: "",
             plannedSpend: 5000000,
             AM: "MTA",
-            revenue:22889210,
-            ROI:357,
+            revenue: 22889210,
+            ROI: 357,
             historyIncluded: "",
             DataThrough: "",
             shared: ""
@@ -191,10 +191,10 @@ angular.module("ROIClientApp")
         //scope functions
 
         $scope.switchToView = function (viewName) {
-            $location.path("myscenarios/"+viewName);
+            $location.path("myscenarios/" + viewName);
         };
 
-        $scope.slecteRow = function (obj) {
+        $scope.selectRow = function (obj) {
             obj.isActive = !obj.isActive;
             switch (activeCount($scope.scenarios)) {
                 case 0:
@@ -209,7 +209,7 @@ angular.module("ROIClientApp")
                     break;
                 case 2:
                     Object.keys($scope.operations).forEach(function (key) {
-                        $scope.operations[key].disable = (key !== 'delete'&& key!=='compare');
+                        $scope.operations[key].disable = (key !== 'delete' && key !== 'compare');
                     });
                     break;
                 default:
@@ -220,8 +220,7 @@ angular.module("ROIClientApp")
             }
         };
         //main
-    }
-)
+    })
     .controller("scenariosExportCtrl", function ($scope) {
         //vars
 
@@ -230,8 +229,7 @@ angular.module("ROIClientApp")
         //scope vars
 
         //scope functions
-    }
-)
+    })
     .controller("scenariosShareCtrl", function ($scope) {
         //vars
 
@@ -240,8 +238,7 @@ angular.module("ROIClientApp")
         //scope vars
 
         //scope functions
-    }
-)
+    })
     .controller("saveCtrl", function ($scope) {
         //vars
 
@@ -250,8 +247,7 @@ angular.module("ROIClientApp")
         //scope vars
 
         //scope functions
-    }
-)
+    })
     .controller("scenariosCompareCtrl", function ($scope) {
         //vars
         $scope.compareChartData = [
@@ -260,15 +256,14 @@ angular.module("ROIClientApp")
             {title: "Social", value: 462326},
             {title: "Affiliates", value: -26445},
             {title: "Partners", value: -199106},
-            {title: "Portfolio Total", value:0}
+            {title: "Portfolio Total", value: 0}
         ];
         //functions
 
         //scope vars
 
         //scope functions
-    }
-)
+    })
     .value('compareChartConfig', {
         width: 400,
         height: 313,

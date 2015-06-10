@@ -2,9 +2,8 @@
  * Created by Haizhou on 5/11/2015.
  */
 'use strict';
-var moduleName = 'ROIClientAppPlanForwardModule';
-angular.module(moduleName, [])
-    .controller('forwardCtrl', ['$scope', '$filter', '$http','$location', function ($scope, $filter, $http,$location) {
+angular.module("ROIClientApp")
+    .controller('forwardCtrl', ['$scope', '$filter', '$http', '$location', function ($scope, $filter, $http, $location) {
 
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
@@ -104,9 +103,20 @@ angular.module(moduleName, [])
                 $scope.planForward.dataThrough = new Date($scope.planForward.endPeriod);
                 $scope.planForward.dataThrough.setMonth($scope.planForward.include ? $scope.planForward.endPeriod.getMonth() : $scope.planForward.endPeriod.getMonth() - 1);
 
+                $scope.planForward.output.semTLB = Number($scope.planForward.output.semBLB) + Number($scope.planForward.output.semCLB) + Number($scope.planForward.output.semPLB) + Number($scope.planForward.output.semOLB);
+                $scope.planForward.output.semTUB = Number($scope.planForward.output.semBUB) + Number($scope.planForward.output.semCUB) + Number($scope.planForward.output.semPUB) + Number($scope.planForward.output.semOUB);
+
                 // set default value of input
-                $scope.planForward.input.semMin = Number($scope.planForward.output.semBLB) + Number($scope.planForward.output.semCLB) + Number($scope.planForward.output.semPLB) + Number($scope.planForward.output.semOLB);
-                $scope.planForward.input.semMax = Number($scope.planForward.output.semBUB) + Number($scope.planForward.output.semCUB) + Number($scope.planForward.output.semPUB) + Number($scope.planForward.output.semOUB);
+                $scope.planForward.input.semMin = $scope.planForward.output.semTLB;
+                $scope.planForward.input.semMax = $scope.planForward.output.semTUB;
+                $scope.planForward.input.semBMin = $scope.planForward.output.semBLB;
+                $scope.planForward.input.semBMax = $scope.planForward.output.semBUB;
+                $scope.planForward.input.semCMin = $scope.planForward.output.semCLB;
+                $scope.planForward.input.semCMax = $scope.planForward.output.semCUB;
+                $scope.planForward.input.semPMin = $scope.planForward.output.semPLB;
+                $scope.planForward.input.semPMax = $scope.planForward.output.semPUB;
+                $scope.planForward.input.semOMin = $scope.planForward.output.semOLB;
+                $scope.planForward.input.semOMax = $scope.planForward.output.semOUB;
                 $scope.planForward.input.disMin = Number($scope.planForward.output.disLB);
                 $scope.planForward.input.disMax = Number($scope.planForward.output.disUB);
                 $scope.planForward.input.socMin = Number($scope.planForward.output.socLB);
@@ -135,7 +145,7 @@ angular.module(moduleName, [])
             $scope.planForward.selectPlan.semTotal = !!($scope.planForward.selectPlan.semBrand && $scope.planForward.selectPlan.semCard && $scope.planForward.selectPlan.semPhotobook && $scope.planForward.selectPlan.semOthers);
         };
 
-        $scope.calculate = function(){
+        $scope.calculate = function () {
             // init data
             $scope.planForward.input.semAS = Number($scope.planForward.output.semTLB);
             $scope.planForward.input.disAS = Number($scope.planForward.output.disLB);
@@ -143,76 +153,18 @@ angular.module(moduleName, [])
             $scope.planForward.input.affAS = Number($scope.planForward.output.affLB);
             $scope.planForward.input.parAS = Number($scope.planForward.output.parLB);
 
-            $scope.nav.current='Output'
+            $scope.nav.current = 'Output'
         };
-        $scope.save = function(){
+
+        $scope.$watch('planForward', function () {
+            if ($scope.nav.current === 'Constraints Input') {
+                $scope.planForward.input.semMin = Number($scope.planForward.input.semBMin) + Number($scope.planForward.input.semCMin) + Number($scope.planForward.input.semPMin) + Number($scope.planForward.input.semOMin);
+                $scope.planForward.input.semMax = Number($scope.planForward.input.semBMax) + Number($scope.planForward.input.semCMax) + Number($scope.planForward.input.semPMax) + Number($scope.planForward.input.semOMax);
+            } else if ($scope.nav.current === 'Output') {
+            }
+        }, true);
+
+        $scope.save = function () {
             $location.path('planforward/save');
         }
-    }])
-    .directive('formatInput', ['$filter', function ($filter) {
-        return {
-            require: 'ngModel',
-            link: function (scope, elem, attrs, ngModel) {
-                if (!ngModel) return;
-
-                ngModel.$formatters.unshift(function (a) {
-                    return $filter('formatCurrency')(ngModel.$modelValue)
-                });
-
-                ngModel.$parsers.unshift(function (viewValue) {
-                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                    elem.val($filter('formatCurrency')(plainNumber));
-                    return plainNumber;
-                });
-            }
-        };
-    }])
-    .directive('stringToNumber', function () {
-        return {
-            require: 'ngModel',
-            link: function (scope, element, attrs, ngModel) {
-                ngModel.$parsers.push(function (value) {
-                    return '' + value;
-                });
-                ngModel.$formatters.push(function (value) {
-                    return parseFloat(value, 10);
-                });
-            }
-        };
-    })
-    .filter('formatDate', function () {
-        function format(element, input) {
-            switch (element) {
-                case 'Month':
-                    return input.toDateString().split(' ')[1];
-                case 'MM':
-                    return input.getMonth() + 1;
-                case 'yyyy':
-                    return input.getFullYear();
-                case 'yy':
-                    return input.getYear();
-                default :
-                    return input.toDateString().split(' ')[1] + "-" + input.getFullYear();
-            }
-        }
-
-        return function (input, formatStr) {
-            input = input || new Date();
-            var formatDetail = formatStr ? formatStr.split('-') : ['default'];
-            var output = "";
-            formatDetail.forEach(function (element) {
-                output = output + " " + format(element, input);
-            });
-            return output;
-        };
-    })
-    .filter('formatCurrency', function () {
-        return function (input) {
-            input = input || 0;
-            if (typeof input === 'string') {
-                input = input.split(',').join('');
-            }
-            var output = Number(input).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').toString();
-            return "$" + output.substr(0, output.length - 3);
-        }
-    });
+    }]);

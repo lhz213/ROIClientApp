@@ -2,9 +2,8 @@
  * Created by Haizhou on 5/8/2015.
  */
 'use strict';
-var moduleName = 'ROIClientAppLookBackModule';
-angular.module(moduleName, [])
-    .controller('backCtrl', ['$scope', '$http','$location', function ($scope, $http, $location) {
+angular.module("ROIClientApp")
+    .controller('backCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
         // tooltips
         $scope.brandTooltips = 'brandTooltips';
         $scope.attrTooltips = 'attrTooltips';
@@ -23,7 +22,7 @@ angular.module(moduleName, [])
         };
         $scope.today = function () {
             var date = new Date();
-            $scope.lookBack.beginPeriod = new Date(date.getFullYear(), date.getMonth() -1, 1);
+            $scope.lookBack.beginPeriod = new Date(date.getFullYear(), date.getMonth() - 1, 1);
             $scope.lookBack.endPeriod = new Date(date.getFullYear(), date.getMonth(), 0);
             $scope.maxDate = new Date();
             $scope.maxDate.setMonth($scope.maxDate.getMonth() - 1);
@@ -80,7 +79,7 @@ angular.module(moduleName, [])
 
         // table
         // sem-brand, sem-card, sem-photobook, sem-other show and hide
-        $scope.showSemItems = false;
+        $scope.showSemItems = true;
 
         $scope.calculate = function () {
             $http.get('/ROIClientApp/dummy_data/output/1430764474_63.json').success(function (data) {
@@ -100,78 +99,42 @@ angular.module(moduleName, [])
 
                 // jump to output page
                 $scope.nav.current = 'Output';
+                $scope.lookBack.input.semTSB = Number($scope.lookBack.input.semBSB) + Number($scope.lookBack.input.semCSB) + Number($scope.lookBack.input.semPSB) + Number($scope.lookBack.input.semOSB);
+                $scope.lookBack.output.semTUB = Number($scope.lookBack.output.semBUB) + Number($scope.lookBack.output.semCUB) + Number($scope.lookBack.output.semPUB) + Number($scope.lookBack.output.semOUB);
+                $scope.lookBack.output.semTLB = Number($scope.lookBack.output.semBLB) + Number($scope.lookBack.output.semCLB) + Number($scope.lookBack.output.semPLB) + Number($scope.lookBack.output.semOLB - 1);
+                $scope.lookBack.output.semTSD = $scope.lookBack.output.semSR - $scope.lookBack.input.semTSB;
+                $scope.lookBack.output.semBSD = $scope.lookBack.output.semBSR - $scope.lookBack.input.semBSB;
+                $scope.lookBack.output.semCSD = $scope.lookBack.output.semCSR - $scope.lookBack.input.semCSB;
+                $scope.lookBack.output.semPSD = $scope.lookBack.output.semPSR - $scope.lookBack.input.semPSB;
+                $scope.lookBack.output.semOSD = $scope.lookBack.output.semOSR - $scope.lookBack.input.semOSB;
+                $scope.lookBack.output.disSD = $scope.lookBack.output.disSR - $scope.lookBack.input.disSB;
+                $scope.lookBack.output.socSD = $scope.lookBack.output.socSR - $scope.lookBack.input.socSB;
+                $scope.lookBack.output.affSD = $scope.lookBack.output.affSR - $scope.lookBack.input.affSB;
+                $scope.lookBack.output.parSD = $scope.lookBack.output.parSR - $scope.lookBack.input.parSB;
+                $scope.lookBack.output.totLB = $scope.lookBack.output.semTLB + Number($scope.lookBack.output.disLB) + Number($scope.lookBack.output.socLB) + Number($scope.lookBack.output.affLB) + Number($scope.lookBack.output.parLB);
+                $scope.lookBack.input.totSB = $scope.lookBack.input.semTSB + Number($scope.lookBack.input.disSB) + Number($scope.lookBack.input.socSB) + Number($scope.lookBack.input.affSB) + Number($scope.lookBack.input.parSB);
+                $scope.lookBack.output.totUB = $scope.lookBack.output.semTUB + Number($scope.lookBack.output.disUB) + Number($scope.lookBack.output.socUB) + Number($scope.lookBack.output.affUB) + Number($scope.lookBack.output.parUB);
+                $scope.lookBack.output.totSD = $scope.lookBack.output.semTSD + $scope.lookBack.output.disSD + $scope.lookBack.output.socSD + $scope.lookBack.output.affSD + $scope.lookBack.output.parSD;
             });
         };
         $scope.save = function () {
             $location.path('lookback/save');
-        }
-    }])
-    .directive('formatInput', ['$filter', function ($filter) {
-        return {
-            require: 'ngModel',
-            link: function (scope, elem, attrs, ngModel) {
-                if (!ngModel) return;
-
-                ngModel.$formatters.unshift(function (a) {
-                    return $filter('formatCurrency')(ngModel.$modelValue)
-                });
-
-                ngModel.$parsers.unshift(function (viewValue) {
-                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                    elem.val($filter('formatCurrency')(plainNumber));
-                    return plainNumber;
-                });
-            }
         };
-    }])
-    .directive('stringToNumber', function () {
-        return {
-            require: 'ngModel',
-            link: function (scope, element, attrs, ngModel) {
-                ngModel.$parsers.push(function (value) {
-                    return '' + value;
-                });
-                ngModel.$formatters.push(function (value) {
-                    return parseFloat(value, 10);
-                });
-            }
-        };
-    })
-    .filter('formatDate', function () {
-        function formatDateFilter(element, input) {
-            switch (element) {
-                case 'dd':
-                    return input.getDate();
-                case 'Month':
-                    return input.toDateString().split(' ')[1];
-                case 'MM':
-                    return input.getMonth() + 1;
-                case 'yyyy':
-                    return input.getFullYear();
-                case 'yy':
-                    return input.getYear();
-                default :
-                    return input.toDateString().split(' ')[1] + "-" + input.getDate() + "-" + input.getFullYear();
-            }
-        }
 
-        return function (input, formatStr) {
-            input = input || new Date();
-            var formatDetail = formatStr ? formatStr.split('-') : ['default'];
-            var output = "";
-            formatDetail.forEach(function (element) {
-                output = output + " " + formatDateFilter(element, input);
-            });
-            return output;
-        };
-    })
-    .filter('formatCurrency', function () {
-        return function (input) {
-            input = input || 0;
-            if (typeof input === 'string') {
-                input = input.split(',').join('');
+        $scope.$watch('lookBack', function () {
+            if ($scope.nav.current === 'Output') {
+                $scope.lookBack.input.semTSB = Number($scope.lookBack.input.semBSB) + Number($scope.lookBack.input.semCSB) + Number($scope.lookBack.input.semPSB) + Number($scope.lookBack.input.semOSB);
+                $scope.lookBack.output.semTSD = $scope.lookBack.output.semSR - $scope.lookBack.input.semTSB;
+                $scope.lookBack.output.semBSD = $scope.lookBack.output.semBSR - $scope.lookBack.input.semBSB;
+                $scope.lookBack.output.semCSD = $scope.lookBack.output.semCSR - $scope.lookBack.input.semCSB;
+                $scope.lookBack.output.semPSD = $scope.lookBack.output.semPSR - $scope.lookBack.input.semPSB;
+                $scope.lookBack.output.semOSD = $scope.lookBack.output.semOSR - $scope.lookBack.input.semOSB;
+                $scope.lookBack.output.disSD = $scope.lookBack.output.disSR - $scope.lookBack.input.disSB;
+                $scope.lookBack.output.socSD = $scope.lookBack.output.socSR - $scope.lookBack.input.socSB;
+                $scope.lookBack.output.affSD = $scope.lookBack.output.affSR - $scope.lookBack.input.affSB;
+                $scope.lookBack.output.parSD = $scope.lookBack.output.parSR - $scope.lookBack.input.parSB;
+                $scope.lookBack.input.totSB = $scope.lookBack.input.semTSB + Number($scope.lookBack.input.disSB) + Number($scope.lookBack.input.socSB) + Number($scope.lookBack.input.affSB) + Number($scope.lookBack.input.parSB);
+                $scope.lookBack.output.totSD = $scope.lookBack.output.semTSD + $scope.lookBack.output.disSD + $scope.lookBack.output.socSD + $scope.lookBack.output.affSD + $scope.lookBack.output.parSD;
             }
-            var output = Number(input).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').toString();
-            return "$" + output.substr(0, output.length - 3);
-        }
-    });
+        }, true);
+    }]);
