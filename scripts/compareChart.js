@@ -2,15 +2,22 @@
  * Created by ypling on 5/14/15.
  */
 angular.module('CompareChart', [])
-    .directive('compareChart',['compareChartConfig',function (configData) {
+    .directive('compareChart', function () {
         return {
             restrict: 'EA',
+            scope: {
+                compareData: '=',
+                config: '=',
+                title: '@',
+                bottom: '@'
+            },
             link: function (scope) {
-                var data = scope.compareChartData;
-                var barHeight = (configData.height - configData.margin.top - configData.margin.bottom) / data.length;
+                var data = scope.compareData;
+                var barHeight = scope.config["barHeight"] ? scope.config["barHeight"] : 30;
+                var height = barHeight * data.length + scope.config.margin.top + scope.config.margin.bottom;
                 var textHeight = 20;
                 var textMargin = 2;
-                var midX = (configData.width + configData.margin.left - configData.margin.right) / 2;
+                var midX = (scope.config.width + scope.config.margin.left - scope.config.margin.right) / 2;
                 var oldScaleFactor;
 
                 function renderChart(data, oldData) {
@@ -19,52 +26,54 @@ angular.module('CompareChart', [])
                     data.forEach(function (item) {
                         maxValue = Math.max(maxValue, Math.abs(item.value));
                     });
-                    scaleFactor = (configData.width - configData.margin.left - configData.margin.right) / 2 / maxValue;
+                    scaleFactor = (scope.config.width - scope.config.margin.left - scope.config.margin.right) / 2 / maxValue;
                     d3.select('#chart').select('svg').remove();
                     var chartSvg = d3.select('#chart')
                         .append("svg");
-                    chartSvg.attr("width", configData.width)
-                        .attr("height", configData.height);
+                    chartSvg.attr("width", scope.config.width)
+                        .attr("height", height);
 
 
                     data.forEach(function (item, index) {
                         //draw scale
                         var scale = chartSvg.append('line');
-                        scale.attr('x1', midX - 10).attr('y1', barHeight * index + configData.margin.top)
-                            .attr('x2', midX + 10).attr('y2', barHeight * index + configData.margin.top)
+                        scale.attr('x1', midX - 10).attr('y1', barHeight * index + scope.config.margin.top)
+                            .attr('x2', midX + 10).attr('y2', barHeight * index + scope.config.margin.top)
                             .attr("stroke-width", 1)
                             .attr("stroke", "black");
                         //end scale
                         //draw background rectangle
                         var bgRect = chartSvg
                             .append('rect')
-                            .attr('x', configData.margin.left)
-                            .attr('y', barHeight * index + textHeight + configData.margin.top + textMargin)
-                            .attr('width', configData.width - configData.margin.left - configData.margin.right)
-                            .attr('height', barHeight - textHeight - textMargin)
-                            .style('fill', '#eeeeee');
+                            .attr('x', scope.config.margin.left)
+                            .attr('y', barHeight * index + scope.config.margin.top + 1)
+                            .attr('width', scope.config.width - scope.config.margin.left - scope.config.margin.right)
+                            .attr('height', barHeight - 1)
+                            .style('fill', '#eee');
                         //end background
                         //draw rectangle
                         var rect = chartSvg
                             .append('rect')
-                            .attr("y", barHeight * index + textHeight + configData.margin.top + textMargin)
-                            .attr("height", barHeight - textHeight - textMargin)
-                            .style('fill', 'darkorange');
+                            .attr("y", barHeight * index  + scope.config.margin.top + 10)
+                            .attr("height", barHeight - 20)
+                            .style('fill', '#F05323');
                         //render title text
                         var titleText = chartSvg.append('text');
                         titleText.text(item.title)
-                            .attr('x', midX)
-                            .attr('y', barHeight * index + configData.margin.top + textHeight)
-                            .attr('font-size', "20px")
-                            .attr('text-anchor', "end");
+                            .attr('x', 0)
+                            .attr('y', barHeight * index + scope.config.margin.top + barHeight - 7)
+                            .attr('font-size', barHeight - 7)
+                            //.attr('fill', 'rgba(255, 255, 255, .4)')
+                            .attr('font-weight',800)
+                            .attr('text-anchor', "left");
                         //end text
                         //render value text
                         var valueText = chartSvg.append('text');
                         valueText.text(Math.abs(item.value))
-                            .attr('font-size', "20px")
-                            .attr('fill', 'royalblue')
+                            .attr('font-size', 10)
+                            .attr('fill', '#222')
                             .attr('x', Number(oldData[index].value) * oldScaleFactor + midX)
-                            .attr('y', barHeight * index + configData.margin.top + textHeight + barHeight / 2)
+                            .attr('y', barHeight * index + scope.config.margin.top + textHeight + textMargin)
                             .transition()
                             .attr('x', Number(item.value) * scaleFactor + midX);
                         //end text
@@ -85,24 +94,27 @@ angular.module('CompareChart', [])
                     });
 
                     var xAxis = chartSvg.append('line');
-                    xAxis.attr('x1', configData.margin.left).attr('y1', configData.height - configData.margin.bottom)
-                        .attr('x2', configData.width - configData.margin.right).attr('y2', configData.height - configData.margin.bottom)
+                    xAxis.attr('x1', scope.config.margin.left).attr('y1', height - scope.config.margin.bottom)
+                        .attr('x2', scope.config.width - scope.config.margin.right).attr('y2', height - scope.config.margin.bottom)
                         .attr("stroke-width", 1)
                         .attr("stroke", "black");
 
                     var yAxis = chartSvg.append('line');
-                    yAxis.attr('x1', midX).attr('y1', configData.margin.top)
-                        .attr('x2', midX).attr('y2', configData.height - configData.margin.bottom + 10)
+                    yAxis.attr('x1', midX).attr('y1', scope.config.margin.top)
+                        .attr('x2', midX).attr('y2', height - scope.config.margin.bottom + 10)
                         .attr("stroke-width", 1)
                         .attr("stroke", "black");
 
                     oldScaleFactor = scaleFactor;
                 }
 
-                scope.$watch('compareChartData', function (newValue, oldValue) {
+                scope.$watch('compareData', function (newValue, oldValue) {
                     renderChart(newValue, oldValue)
                 }, true);
             },
-            template: '<div id="chart"></div>'
+            template: '' +
+            '<h4>{{title}}</h4>' +
+            '<div id="chart"></div>' +
+            '<h4>{{bottom}}</h4>'
         }
-    }]);
+    });

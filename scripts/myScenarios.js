@@ -250,22 +250,27 @@ angular.module("ROIClientApp")
     })
     .controller("scenariosCompareCtrl", function ($scope) {
         //vars
-        $scope.compareChartData = [
+        $scope.compareChart = {};
+        $scope.compareChart.data = [
             {title: "SEM", value: -109009},
+            {title: "SEM-Bord", value: -8002},
+            {title: "SEM-Card", value: -24321},
+            {title: "SEM-Photobook", value: -25422},
+            {title: "SEM-Others", value: -45621},
             {title: "Display", value: -127765},
             {title: "Social", value: 462326},
             {title: "Affiliates", value: -26445},
             {title: "Partners", value: -199106},
             {title: "Portfolio Total", value: 0}
         ];
+        $scope.compareChart.config = {
+            width: 800,
+            height: 313,
+            margin: {left: 100, top: 0, right: 100, bottom: 30}
+        };
         //functions
 
         //scope vars
 
         //scope functions
-    })
-    .value('compareChartConfig', {
-        width: 400,
-        height: 313,
-        margin: {left: 0, top: 20, right: 0, bottom: 30}
     });

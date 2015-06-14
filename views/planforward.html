@@ -135,7 +135,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="td-title" ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>
+                        <td class="td-title" ng-click="hideSemItems = !hideSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-hide="hideSemItems" class="fa fa-minus"></i><i ng-show="hideSemItems" class="fa fa-plus"></i></button></td>
                         <td class="check">
                             <label>
                                 <input type="checkbox" ng-model="planForward.selectPlan.semTotal" ng-click="totCheck()">
@@ -147,7 +147,7 @@
                         <td>{{planForward.output.semTUB | formatCurrency}}</td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Brand</td>
                         <td class="check">
                             <label>
@@ -164,7 +164,7 @@
                         <td>{{planForward.output.semBUB | formatCurrency}}</td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Card</td>
                         <td class="check">
                             <label>
@@ -181,7 +181,7 @@
                         <td>{{planForward.output.semCUB | formatCurrency}}</td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Photobook</td>
                         <td class="check">
                             <label class="check">
@@ -198,7 +198,7 @@
                         <td>{{planForward.output.semPUB | formatCurrency}}</td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Others</td>
                         <td class="check">
                             <label>
@@ -391,7 +391,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="td-title" ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>
+                        <td class="td-title" ng-click="hideSemItems = !hideSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-hide="hideSemItems" class="fa fa-minus"></i><i ng-show="hideSemItems" class="fa fa-plus"></i></button></td>
                         <td colspan="5"></td>
                         <td colspan="2"></td>
                         <td colspan="3"></td>
@@ -400,7 +400,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM - Brand</td>
                         <td></td>
                         <td></td>
@@ -419,7 +419,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM - Card</td>
                         <td></td>
                         <td></td>
@@ -438,7 +438,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM - Photobook</td>
                         <td></td>
                         <td></td>
@@ -457,7 +457,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-hide="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM - Others</td>
                         <td></td>
                         <td></td>

@@ -212,7 +212,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="td-title" ng-click="showSemItems = !showSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-show="showSemItems" class="fa fa-minus"></i><i ng-hide="showSemItems" class="fa fa-plus"></i></button></td>
+                        <td class="td-title" ng-click="hideSemItems = !hideSemItems">SEM Total<button class="btn btn-xs btn-default"><i ng-hide="hideSemItems" class="fa fa-minus"></i><i ng-show="hideSemItems" class="fa fa-plus"></i></button></td>
                         <td>{{lookBack.output.semSR | formatCurrency}}</td>
                         <td class="disabled">-</td>
                         <td>{{lookBack.output.semTLB | formatCurrency}}</td>
@@ -222,7 +222,7 @@
                         <td>{{lookBack.output.semTSD | formatCurrency}}</td>
                         <td class="disabled">-</td>
                     </tr>
-                    <tr ng-show="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Brand</td>
                         <td>{{lookBack.output.semBSR | formatCurrency}}</td>
                         <td class="disabled">-</td>
@@ -235,7 +235,7 @@
                         <td>{{lookBack.output.semBSD | formatCurrency}}</td>
                         <td class="disabled">-</td>
                     </tr>
-                    <tr ng-show="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Cards</td>
                         <td>{{lookBack.output.semCSR | formatCurrency}}</td>
                         <td class="disabled">-</td>
@@ -248,7 +248,7 @@
                         <td>{{lookBack.output.semCSD | formatCurrency}}</td>
                         <td class="disabled">-</td>
                     </tr>
-                    <tr ng-show="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Photobook</td>
                         <td>{{lookBack.output.semPSR | formatCurrency}}</td>
                         <td class="disabled">-</td>
@@ -261,7 +261,7 @@
                         <td>{{lookBack.output.semPSD | formatCurrency}}</td>
                         <td class="disabled">-</td>
                     </tr>
-                    <tr ng-show="showSemItems">
+                    <tr ng-hide="hideSemItems">
                         <td class="td-subtitle">SEM-Others</td>
                         <td>{{lookBack.output.semOSR | formatCurrency}}</td>
                         <td class="disabled">-</td>

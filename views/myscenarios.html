@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-if="nav.current === 'ScenarioListing'">
     <!--nav bar-->
     <div class="row">
         <ol class="breadcrumb path path-myscenarios">
@@ -42,6 +42,6 @@
     <!--end table view-->
     <!--button bar-->
     <div class="row">
-            <span class="btn btn-orange" ng-class="{'disabled':operation.disable}" ng-click="switchToView(key)" ng-repeat="(key,operation) in operations">{{key}}</span>
+        <span class="btn btn-orange" ng-class="{'disabled':operation.disable}" ng-click="switchToView(key)" ng-repeat="(key,operation) in operations">{{key}}</span>
     </div>
 </div>

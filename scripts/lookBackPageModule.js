@@ -78,8 +78,6 @@ angular.module("ROIClientApp")
         $scope.resetForm();
 
         // table
-        // sem-brand, sem-card, sem-photobook, sem-other show and hide
-        $scope.showSemItems = true;
 
         $scope.calculate = function () {
             $http.get('/ROIClientApp/dummy_data/output/1430764474_63.json').success(function (data) {
